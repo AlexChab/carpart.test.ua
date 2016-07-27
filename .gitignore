@@ -26,7 +26,6 @@ phpunit.phar
 # local phpunit config
 /phpunit.xml
 # ignore framework
-/web
 /tests
 /runtime
 /mail
@@ -34,3 +33,4 @@ phpunit.phar
 /*.*
 /yii
 !.gitignore
+

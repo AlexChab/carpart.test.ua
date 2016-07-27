@@ -1,0 +1,177 @@
+@import url(bootstrap.min.css);
+@import url(font-awesome.min.css);
+
+/*color blue #337ab7
+color red #b10000
+*/
+body{
+	background: #fff url(../image/bg.gif) repeat-x;
+	font-family: 'Open Sans', sans-serif !important;
+}
+.text-danger{
+	color: #b10000;
+}
+.btn-danger{
+	background-color: #b10000;
+}
+.head{
+	background: #eeeeee; /* Old browsers */
+	background: -moz-linear-gradient(top,  #eeeeee 0%, #cccccc 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  #eeeeee 0%,#cccccc 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  #eeeeee 0%,#cccccc 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
+	height: auto;
+	padding: 5px;
+	margin-bottom: 15px;
+	border-bottom: solid 1px #fff;
+}
+
+.panel-default-wrap{
+	border: 1px solid #969696 !important;
+	border-radius: 4px;	
+	padding-bottom: 2px;
+	margin-bottom: 5px;
+}
+.panel-heading-wrap{
+	background: #ECEFF1 url(../image/bg_title.gif) repeat-x;
+  border-bottom: solid 1px #969696 !important;
+  padding: 10px;
+}
+.panel-body-wrap{
+	background:	-webkit-gradient(linear, left top, left bottom, from(#D8D9DD), to(#ECEFF2));
+  background: -moz-linear-gradient(top, #D8D9DD, #ECEFF2);
+  background: -o-linear-gradient(top, #D8D9DD, #ECEFF2);
+  background: -ms-linear-gradient(top, #D8D9DD, #ECEFF2);
+}
+.panel-body-cart{
+	background: #ECEFF1 url(../image/bg_title.gif) repeat-x;
+	border-radius: 4px;
+	padding: 1px;
+	height: auto;
+	padding: 2px !important;
+
+}
+.panel-body-cart p{
+	display: block;
+	font-size: 16px;
+	margin: 15px;
+}
+.panel-shopcart{
+	float: left;
+  background: url(../image/shopcart.png) no-repeat;
+  width: 53px;
+  height: 51px;
+}
+.head-phone{
+	
+	 
+}
+.head-phone li{
+	list-style: none;  
+	margin-bottom: 3px;
+}
+
+.head-phone ul{
+	padding: 0px;
+}
+.head-phone span{
+		
+	font-weight: bold; 
+}
+.head-phone p{
+	margin-bottom: 10px;
+}
+.panel-heading-choice-car{
+	float: left;
+  background: url(../image/phone.png) no-repeat;
+  width: 25px;
+  height: 25px;
+
+}
+.h1,.h2,.h3,.h4,.h5{
+	text-transform: uppercase;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+.h1{
+	font-size: 20px;
+}
+.h2{
+	font-size: 18px;	
+}
+.h3{
+	font-size: 16px;
+
+}
+.h4{
+	font-size: 14px;
+	font-style: bold;	
+}
+.h5{
+	font-size: 12px;
+	font-weight: bold;
+}
+.models{
+	float: left;
+}
+.models li{
+	list-style: none;
+}
+.models li:before {
+  content: "\f207"; 
+ 	font-family: FontAwesome;
+ 	display: inline-block; 
+ 	color: lightgray;
+}
+.category{
+	padding-top: 5px;
+	padding-bottom: 10px;
+}
+.category li{
+	list-style: none;
+	list-style-position: outside;
+}
+.category a{
+	margin-left: 5px;
+	color: #000;
+}
+.category a:hover{
+	color:#337ab7;
+}
+.category li:before {
+  content: "\f013"; 
+ 	font-family: FontAwesome;
+ 	display: inline-block; 
+ 	color: lightgray;
+}
+.letter thead tr{
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f5f7f9+0,eff1f2+0,d7dee3+46,d2dbdd+53,d7dee3+100 */
+background: #f5f7f9; /* Old browsers */
+background: -moz-linear-gradient(top,  #f5f7f9 0%, #eff1f2 0%, #d7dee3 46%, #d2dbdd 53%, #d7dee3 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #f5f7f9 0%,#eff1f2 0%,#d7dee3 46%,#d2dbdd 53%,#d7dee3 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #f5f7f9 0%,#eff1f2 0%,#d7dee3 46%,#d2dbdd 53%,#d7dee3 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f7f9', endColorstr='#d7dee3',GradientType=0 ); /* IE6-9 */
+
+
+}
+.letter tbody tr{
+
+}
+.letter tbody tr:hover{
+	background:  #E5E9F9;
+	cursor: pointer;
+	color: #337ab7;
+	font-weight: bold;
+}
+.footer{
+}
+.footer li{
+	list-style:none;
+}
+.footer li:before {
+  content: "\f101"; 
+ 	font-family: FontAwesome;
+ 	display: inline-block; 
+ 	color:#b10000;
+ 	
+}

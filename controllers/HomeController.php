@@ -9,15 +9,19 @@
 namespace app\controllers;
 
 
+use app\models\Manufactures;
 use yii\web\Controller;
 
 class HomeController extends AppController
 {
-	public function actionIndex($name ='Гость'){
-		$this->debug($_SERVER);
-//		return $this->render('index', compact('name'));
+	public $layout = 'home';
+	public function actionIndex(){
+		// $this->debug($_SERVER);
+	return $this->render('carList');
 	}
 	public function actionCarlist(){
-		echo 'carList page';
+		$data = Manufactures::getListCar();
+		return $this->render('carList',compact('data'));
+		
 	}
 }
