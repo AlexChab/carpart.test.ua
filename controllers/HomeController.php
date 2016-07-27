@@ -17,4 +17,7 @@ class HomeController extends AppController
 		$this->debug($_SERVER);
 //		return $this->render('index', compact('name'));
 	}
+	public function actionCarlist(){
+		echo 'carList page';
+	}
 }
