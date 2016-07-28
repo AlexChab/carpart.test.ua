@@ -8,20 +8,28 @@
 
 namespace app\controllers;
 
-
-use app\models\Manufactures;
+use Yii;
+use app\models\Tecdoc;
 use yii\web\Controller;
+
 
 class HomeController extends AppController
 {
 	public $layout = 'home';
 	public function actionIndex(){
 		// $this->debug($_SERVER);
-	return $this->render('carList');
+	return $this->render('index');
 	}
 	public function actionCarlist(){
-		$data = Manufactures::getListCar();
+		$data = Tecdoc::getListManufactured();
 		return $this->render('carList',compact('data'));
-		
+	}
+	public function actionManfcar(){
+		$request = Yii::$app->request;
+		$id = $request->get('manid');
+		// echo $id;
+		$data = Tecdoc::getManufacturedCar($id);
+//		return $this->render('manfcar',compact('data'));
+		//$this->debug($data);
 	}
 }
