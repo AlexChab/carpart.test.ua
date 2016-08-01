@@ -1,6 +1,6 @@
 <div class="panel panel-default">
 	<div class="panel-heading panel-heading-wrap">
-		Модель
+		Производитель
 	</div>
 	<div class="panel-body">
 		<ul class="models">
@@ -14,15 +14,9 @@
 				$i++;
 				echo'
 				<li>
-				<a  href="/home/manf"><b>'.$value['MFA_BRAND'].'</b></a>
+				<a  href="/home/manfcar?manid='.$value['MFA_ID'].'"><b>'.$value['MFA_BRAND'].'</b></a>
 			</li>';
 			}
-
-//			echo '<ul class="models">
-//			<li>
-//				<a  href="#"><b>'.$value['MFA_BRAND'].'</b></a>
-//			</li>
-//		</ul>';
 
 		}
 

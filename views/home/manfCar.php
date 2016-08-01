@@ -1,6 +1,6 @@
 <div class="panel panel-default">
 	<div class="panel-heading panel-heading-wrap">
-		Модель
+		Модели по производителю
 	</div>
 	<div class="panel-body">
 		<ul class="models">
@@ -14,7 +14,7 @@
 					$i++;
 					echo'
 				<li>
-				<a  href="/home/manf"><b>'.$value['MOD_CDS_TEXT'].'</b></a>
+				<a  href="/home/carmodel?carid='.$value['MOD_ID'].'"><b>'.$value['MOD_CDS_TEXT'].'</b></a>
 			</li>';
 				}
 

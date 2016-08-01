@@ -150,7 +150,7 @@ AppAsset::register($this);
     </div>
 	</div>
 	<div class="row footer">
-
+		<hr>
 		<div class="col-md-4 col-sm-4 col-xs-6">
 			<address>
 				<strong>Магазин - склад</strong><br>
