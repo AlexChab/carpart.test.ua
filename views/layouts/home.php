@@ -48,13 +48,13 @@ AppAsset::register($this);
 			<div class="panel-default-wrap">
 				<div class="panel-body panel-body-cart">
 					<a href="#" class="panel-shopcart"> </a>
-					<p> Позиций : <b>10</b> на сумму: <b>12345 грн.</b></p>
+					<p> Позиций : <b> 00 </b> на сумму: <b> 00 грн.</b></p>
 				</div>
 			</div>
 			<div class="input-group">
-				<input type="text" class="form-control" placeholder="Search for...">
+				<input type="text" id="inputSearchArt" class="form-control" placeholder="Поиск по артикулу...">
 					<span class="input-group-btn">
-					<button class="btn btn-danger" type="button">Поиск</button>
+					<button id="searchArt" class="btn btn-danger" type="button">Поиск</button>
 					</span>
 			</div>
 		</div>
@@ -135,7 +135,7 @@ AppAsset::register($this);
 				</div>
 			</div>
 		</div>
-		<div class="col-md-9">
+		<div class="col-md-9" id="contentBody">
 			<?= Breadcrumbs::widget([
 					'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
 			]) ?>

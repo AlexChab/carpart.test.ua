@@ -18,7 +18,27 @@ $(document).ready(function(){
 		console.log('del car');
 		$('#form-'+this.id).remove();
 	})
+    $("#searchArt").on('click',function () {
+        error_message = "Error ajax";
+        var inputSearchArt = $("#inputSearchArt").val().replace(/\s+/g, '');
+        $.ajax({
+            type: 'GET',
+            url: '/home/searchart?article='+inputSearchArt,
+            success: function(data){
+                $("#contentBody").empty();
+                $("#contentBody").html(data);
+                
+            },
+            error: function()
+            {
+                alert(error_message);
+            }
 
+        });
+        console.log(inputSearchArt);
+        console.log('input');
+
+    })
 
 	// -- Hover на изменение вида 
 	$('.category').hover(function(){
