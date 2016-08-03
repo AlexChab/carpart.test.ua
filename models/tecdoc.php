@@ -105,10 +105,10 @@ class Tecdoc extends Model
 		$data = $command->queryAll();
 		return $data;
 	}
-	public function getTree($typ_id){
+	public function getTree($typ_id,$str_id){
 		// $typ_id  = '3822';
 		$lng_id = '16';
-		$str_id = '10001';
+		//$str_id = '10001';
 		$connection = Yii::$app->getDb();
 		$command = $connection->createCommand("
 		SELECT
@@ -143,6 +143,49 @@ WHERE
 			1
 	)
 		");
+		$data = $command->queryAll();
+		return $data;
+	}
+	public function getTree2($typ_id,$str_id){
+		$lng_id = '16';
+		$connection = Yii::$app->getDb();
+		$command = $connection->createCommand("
+		SELECT 	LA_ART_ID
+		FROM LINK_GA_STR
+		INNER JOIN LINK_LA_TYP ON LAT_TYP_ID = $typ_id AND
+	                          LAT_GA_ID = LGS_GA_ID
+		INNER JOIN LINK_ART ON LA_ID = LAT_LA_ID
+		WHERE LGS_STR_ID <=> $str_id
+		ORDER BY	LA_ART_ID LIMIT	100
+		");
+		$data = $command->queryAll();
+		return $data;
+	}
+	public function articles($art_id){
+		$lng_id = '16';
+		$connection = Yii::$app->getDb();
+		$command = $connection->createCommand("
+		SELECT
+	ART_ARTICLE_NR,
+	SUP_BRAND,
+	DES_TEXTS.TEX_TEXT AS ART_COMPLETE_DES_TEXT,
+	DES_TEXTS2.TEX_TEXT AS ART_DES_TEXT,
+	DES_TEXTS3.TEX_TEXT AS ART_STATUS_TEXT
+FROM
+	           ARTICLES
+	INNER JOIN DESIGNATIONS ON DESIGNATIONS.DES_ID = ART_COMPLETE_DES_ID
+		AND DESIGNATIONS.DES_LNG_ID = $lng_id
+	INNER JOIN DES_TEXTS ON DES_TEXTS.TEX_ID = DESIGNATIONS.DES_TEX_ID
+	 LEFT JOIN DESIGNATIONS AS DESIGNATIONS2 ON DESIGNATIONS2.DES_ID = ART_DES_ID
+		AND DESIGNATIONS2.DES_LNG_ID = $lng_id
+	 LEFT JOIN DES_TEXTS AS DES_TEXTS2 ON DES_TEXTS2.TEX_ID = DESIGNATIONS2.DES_TEX_ID
+	INNER JOIN SUPPLIERS ON SUP_ID = ART_SUP_ID
+	INNER JOIN ART_COUNTRY_SPECIFICS ON ACS_ART_ID = ART_ID
+	INNER JOIN DESIGNATIONS AS DESIGNATIONS3 ON DESIGNATIONS3.DES_ID = ACS_KV_STATUS_DES_ID
+		AND DESIGNATIONS3.DES_LNG_ID = $lng_id
+	INNER JOIN DES_TEXTS AS DES_TEXTS3 ON DES_TEXTS3.TEX_ID = DESIGNATIONS3.DES_TEX_ID
+WHERE
+	ART_ID = $art_id");
 		$data = $command->queryAll();
 		return $data;
 	}

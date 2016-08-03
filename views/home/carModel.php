@@ -22,7 +22,7 @@
 				foreach ($data as $value){
 					echo'
 					<tr>
-					<td><a href="/home/gettree?typ_id='.$value['TYP_ID'].'">'.$value['TYP_ID'].'</a></td>
+					<td><a href="/home/gettree?typ_id='.$value['TYP_ID'].'&str_id=10001">'.$value['TYP_ID'].'</a></td>
 					<td>'.$value['TYP_CDS_TEXT'].'</td>
 					<td>'.$value['TYP_FUEL_DES_TEXT'].'</td>
 					<td>'.$value['ENG_CODE'].'</td>

@@ -8,7 +8,9 @@
 			foreach($data as $value){
 				if($i >= 20){
 					$i=0;
-					echo '</ul><ul class="models">';
+					echo '<li>
+				<a  href="/home/carmodel?carid='.$value['MOD_ID'].'"><b>'.$value['MOD_CDS_TEXT'].'</b></a>
+			</li></ul><ul class="models">';
 				}
 				else{
 					$i++;
@@ -28,7 +30,7 @@
 
 
 			?>
-
+</ul>
 	</div>
 </div>
 

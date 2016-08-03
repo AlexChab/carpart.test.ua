@@ -8,13 +8,15 @@
 		foreach($data as $value){
 			if($i >= 20){
 				$i=0;
-				echo '</ul><ul class="models">';
+				echo '	<li>
+				<a  href="/home/yearlist?manid='.$value['MFA_ID'].'"><b>'.$value['MFA_BRAND'].'</b></a>
+			</li></ul><ul class="models">';
 			}
 			else{
 				$i++;
 				echo'
 				<li>
-				<a  href="/home/manfcar?manid='.$value['MFA_ID'].'"><b>'.$value['MFA_BRAND'].'</b></a>
+				<a  href="/home/yearlist?manid='.$value['MFA_ID'].'"><b>'.$value['MFA_BRAND'].'</b></a>
 			</li>';
 			}
 
@@ -22,7 +24,7 @@
 
 
 		?>
-
+</ul>
 	</div>
 </div>
 
