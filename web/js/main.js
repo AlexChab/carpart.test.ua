@@ -1,11 +1,11 @@
 $(document).ready(function(){
-	$('#collapseOne').on('hidden.bs.collapse', function () {
-		$("#my-garage").removeClass("fa-chevron-up");
-	  $("#my-garage").addClass("fa-chevron-down");
+    $('#collapseOne').on('hidden.bs.collapse', function () {
+        $("#my-garage").removeClass("fa-chevron-up");
+	    $("#my-garage").addClass("fa-chevron-down");
 	});
 	$('#collapseOne').on('shown.bs.collapse', function () {
 		$("#my-garage").removeClass("fa-chevron-down");
-	  $("#my-garage").addClass("fa-chevron-up");
+	    $("#my-garage").addClass("fa-chevron-up");
 	})
 
 	// delete my-car garage
@@ -67,13 +67,16 @@ $(document).ready(function(){
 	// -- Hover на изменение вида 
 	$('.category').hover(function(){
 		console.log();
-
 		// this.('i').addClass('fa-spin');
 	},
 	function(){
 		console.log('by');
-	}
-	)
+	})
+     $('#dataTables-example').DataTable({
+       responsive: true
+    });
+
+
 });
 $(window).load(function(){
 	console.log('onload');

@@ -12,7 +12,7 @@
 					<th>Артикул</th>
 					<th>Производитель</th>
 					<th>Наименование</th>
-					<th>Статус</th>
+					<th>Цена,грн</th>
 					<th></th>
 
 				</tr>
@@ -27,8 +27,9 @@
 						<td>'.$value[0]['ART_ARTICLE_NR'].'</td>
 						<td>'.$value[0]['SUP_BRAND'].'</td>
 						<td>'.$value[0]['ART_COMPLETE_DES_TEXT'].'</td>
-						<td>'.$value[0]['ART_STATUS_TEXT'].'</td>
-						<td><button class="btn btn-xs btn-default pay-button" id="" type="button" ><i class="fa fa-shopping-cart text-danger" aria-hidden="true" ></i> </button></td>
+						<td class="buy-hover-td"> 165 </td>
+						
+						<td><button class="btn btn-xs btn-default pay-button" id="" type="button" >&nbsp; <i class="fa fa-shopping-cart text-danger" aria-hidden="true"> </i>&nbsp; </button></td>
 						</tr>';
 					}
 				}

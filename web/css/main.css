@@ -193,5 +193,10 @@ body{
 .pay-button{
 
 }
+tr .buy-hover-td :hover{
+    color: darkred;
+    font-weight: bold;
+    
+}
 
 
