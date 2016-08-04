@@ -27,14 +27,17 @@ body{
 }
 
 .panel-default-wrap{
-	border: 1px solid #969696 !important;
+	border: 1px solid #969696 ;
 	border-radius: 4px;	
 	padding-bottom: 2px;
 	margin-bottom: 5px;
 }
+.form-group{
+	margin-bottom: 10px;
+}
 .panel-heading-wrap{
 	background: #ECEFF1 url(../image/bg_title.gif) repeat-x;
-  border-bottom: solid 1px #969696 !important;
+  border-bottom: solid 1px #969696 ;
   padding: 10px;
 }
 .panel-body-wrap{
@@ -145,13 +148,6 @@ body{
  	color: lightgray;
 }
 .letter thead tr{
-/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f5f7f9+0,eff1f2+0,d7dee3+46,d2dbdd+53,d7dee3+100 */
-background: #f5f7f9; /* Old browsers */
-background: -moz-linear-gradient(top,  #f5f7f9 0%, #eff1f2 0%, #d7dee3 46%, #d2dbdd 53%, #d7dee3 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top,  #f5f7f9 0%,#eff1f2 0%,#d7dee3 46%,#d2dbdd 53%,#d7dee3 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom,  #f5f7f9 0%,#eff1f2 0%,#d7dee3 46%,#d2dbdd 53%,#d7dee3 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f7f9', endColorstr='#d7dee3',GradientType=0 ); /* IE6-9 */
-
 
 }
 .letter tbody tr{
@@ -161,7 +157,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f7f9', end
 	background:  #E5E9F9;
 	cursor: pointer;
 	color: #337ab7;
-	/*font-weight: bold;*/
+
 }
 .footer{
 }
@@ -173,5 +169,29 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f7f9', end
  	font-family: FontAwesome;
  	display: inline-block; 
  	color:#b10000;
- 	
 }
+.modal-header{
+	background: #ECEFF1 url(../image/bg_title.gif) repeat-x;
+	padding: 5px 10px;
+	font-size: 15px;
+	
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	font-weight: bold;
+
+}
+.modal-footer{
+	padding: 5px 10px;
+}
+.close{
+	font-size: 24px;
+}
+.btn-gray{
+	background-color: lightgray;
+	border: 1px solid black;
+}
+.pay-button{
+
+}
+
+

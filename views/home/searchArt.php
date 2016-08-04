@@ -7,7 +7,7 @@
 			<table class="table letter table-condensed">
 				<thead>
 				<tr>
-					<th>Tree</th>
+					
 					<th>Производитель</th>
 					<th>Номер изделия</th>
 					<th>Тип номера</th>
@@ -23,7 +23,7 @@
 					
 						echo'
 						<tr>
-						<td><a href="#"</a></td>
+						
 						<td>'.$value['BRAND'].'</td>
 						<td>'.$value['NUMBER'].'</td>
 						<td>'.$value['ARL_KIND'].'</td>

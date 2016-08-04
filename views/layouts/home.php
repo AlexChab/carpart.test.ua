@@ -39,7 +39,7 @@ AppAsset::register($this);
 						</ul>
 					</div>
 					<div class="col-md-6 col-sm-6 col-xs-6">
-						<button type="button" class="btn btn-success ">Обратный Звонок</button>
+						<button type="button" class="btn btn-success" id="call-back">Обратный Звонок</button>
 					</div>
 				</div>
 			</div>
@@ -67,18 +67,18 @@ AppAsset::register($this);
 					<div class="panel-body panel-body-wrap">
 						<div class="form-group" id="form-id-1111">
 							<div class="input-group">
-								<input type="button" class="form-control input-sm my-car" value="Wlokswagen" >
 									<span class="input-group-btn">
-										<button class="btn btn-default btn-sm del-my-car" type="button" id="id-1111"><i class="fa fa-times" aria-hidden="true"></i> </button>
+										<button class="btn btn-default  del-my-car" type="button" id="id-1111" data-car-info="Wolksvagen"><i class="fa fa-times text-muted" aria-hidden="true"></i> </button>
 									</span>
+								<input type="button" class="form-control  my-car  btn-success" value="Wlokswagen" >
 							</div>
 						</div>
 						<div class="form-group" id="form-id-2222">
 							<div class="input-group">
-								<input type="button" class="form-control input-sm my-car"  value="BMW-X5" >
 									<span class="input-group-btn">
-										<button class="btn btn-default btn-sm del-my-car" id="id-2222" type="button"><i class="fa fa-times" aria-hidden="true"></i> </button>
+										<button class="btn btn-default del-my-car " id="id-2222" type="button" data-car-info="BMW-x5"><i class="fa fa-times text-muted" aria-hidden="true" ></i> </button>
 									</span>
+								<input type="button" class="form-control  my-car"  value="BMW-X5" >
 							</div>
 						</div>
 					</div>
@@ -180,14 +180,14 @@ AppAsset::register($this);
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="gridSystemModalLabel">Предупреждение</h4>
+				<div >Предупреждение</div>
 			</div>
 			<div class="modal-body">
 				Удалить элемент
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal"> Скажи Нет</button>
-				<button type="button" class="btn btn-primary">ДА</button>
+				<button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Отмена</button>
+				<button type="button" class="btn btn-danger btn-sm">Удалить</button>
 			</div>
 		</div>
 	</div>

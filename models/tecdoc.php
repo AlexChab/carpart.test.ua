@@ -105,7 +105,7 @@ class Tecdoc extends Model
 		$data = $command->queryAll();
 		return $data;
 	}
-	public function getTree($typ_id,$str_id){
+	public static function getTree($typ_id,$str_id){
 		// $typ_id  = '3822';
 		$lng_id = '16';
 		//$str_id = '10001';
@@ -146,7 +146,7 @@ WHERE
 		$data = $command->queryAll();
 		return $data;
 	}
-	public function getTree2($typ_id,$str_id){
+	public static function getTree2($typ_id,$str_id){
 		$lng_id = '16';
 		$connection = Yii::$app->getDb();
 		$command = $connection->createCommand("
@@ -161,7 +161,7 @@ WHERE
 		$data = $command->queryAll();
 		return $data;
 	}
-	public function articles($art_id){
+	public static function articles($art_id){
 		$lng_id = '16';
 		$connection = Yii::$app->getDb();
 		$command = $connection->createCommand("
@@ -187,7 +187,7 @@ WHERE
 		$data = $command->queryAll();
 		return $data;
 	}
-	public function art_lookup($number){
+	public static function art_lookup($number){
 		$lng_id = '16';
 		$connection = Yii::$app->getDb();
 		$command = $connection->createCommand("
