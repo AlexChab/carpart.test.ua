@@ -10,6 +10,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Tecdoc;
+use app\models\Manufactures;
 use yii\web\Controller;
 
 
@@ -17,7 +18,8 @@ class HomeController extends AppController
 {
 	public $layout = 'home';
 	public function actionIndex(){
-		$data = Tecdoc::getListManufactured();
+		//$data = Tecdoc::getListManufactured();
+		$data = Manufactures::manufacturesGet();
 		return $this->render('carList',compact('data'));
 	}
 	public function actionYearlist(){
