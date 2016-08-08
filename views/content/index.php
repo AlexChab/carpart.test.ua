@@ -5,7 +5,7 @@ $this->title = 'Управление магазином автозапчасте
 	<div class="col-lg-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				DataTables Advanced Tables
+				Управление производителями автомобилей
 			</div>
 			<!-- /.panel-heading -->
 			<div class="panel-body">
@@ -15,29 +15,37 @@ $this->title = 'Управление магазином автозапчасте
 		<tr>
 			<th>Производитель</th>
 			<th>Код</th>
-			<th>Добавить</th>
-			<th>Удалить</th>
+
+			<th>Действие</th>
 
 		</tr>
 		</thead>
 		<tbody>
-		<?php
-		foreach ($data as $value){
-			echo '
-			<tr class="odd gradeX">
-			<td>'.$value['MFA_BRAND'].'</td>
-			<td>'.$value['MFA_ID'].'</td>
-			<td></td>
-			<td></td>
-			
-		</tr>
-			
-			';
-		}
-
-		?>
-
-		</tbody>
+			<?php
+				foreach ($data_site as $value){
+					$data[] = $value['MFA_ID'];
+				}
+				foreach ($data_tecdoc as $key=>$value){
+					$find = in_array($value['MFA_ID'],$data);
+					if($find == true){
+						echo '
+							<tr class="odd gradeX success">
+								<td>'.$value['MFA_BRAND'].'</td>
+								<td>'.$value['MFA_ID'].'</td>
+								<td><a href="/content/delmanufactures?mfa_id='.$value['MFA_ID'].'"><button type="button" class="btn btn-danger btn-xs">Удалить</button></a></td>
+							</tr>';
+					}
+					else{
+						echo '
+							<tr class="odd gradeX ">
+								<td>'.$value['MFA_BRAND'].'</td>
+								<td>'.$value['MFA_ID'].'</td>
+								<td><a href="/content/addmanufactures?mfa_id='.$value['MFA_ID'].'&mfa_brand='.$value['MFA_BRAND'].'"><button type="button" class="btn btn-success btn-xs">Добавить</button></a></td>
+							</tr>';
+					}
+				}
+			?>
+	</tbody>
 	</table>
 	</div>
 				</div>

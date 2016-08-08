@@ -10,6 +10,7 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\db\Connection;
+use yii\db\Query;
 
 
 class Tecdoc extends Model
@@ -24,7 +25,8 @@ class Tecdoc extends Model
 //			'username' => $username,
 //			'password' => $password,
 //		]);
-		$connection = Yii::$app->getDb();
+		//$connection = Yii::$app->getDb();
+		$connection = Yii::$app->db();
 		$command = $connection->createCommand("SELECT MFA_ID, MFA_BRAND FROM MANUFACTURERS WHERE MFA_PC_MFC = '1' ORDER BY MFA_BRAND");
 		$data = $command->queryAll();
 		return $data;
