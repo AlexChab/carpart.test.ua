@@ -30,12 +30,11 @@ class HomeController extends AppController
 		
 	}
 	public function actionManfcar(){
-		//$year = '200801';
 		$request = Yii::$app->request;
 		$id = $request->get('manid');
 		$year = $request->get('caryear');
 		$data = Tecdoc::getManufacturedCar($id,$year);
-		return $this->render('manfcar',compact('data'));
+		return $this->render('manfCar',compact('data'));
 		//$this->debug($data);
 	}
 	public function actionCarmodel(){
@@ -43,7 +42,7 @@ class HomeController extends AppController
 		$id = $request->get('carid');
 		$data = Tecdoc::getCarModel($id);
 		//$this->debug($data);
-		return $this->render('carmodel',compact('data'));
+		return $this->render('carModel',compact('data'));
 	}
 	public function actionGettree(){
 		$request = Yii::$app->request;

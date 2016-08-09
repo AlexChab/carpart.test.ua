@@ -1,17 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: service
- * Date: 28.07.2016
- * Time: 9:11
- */
-
 namespace app\models;
+
 use Yii;
 use yii\base\Model;
 use yii\db\Connection;
 use yii\db\Query;
-
 
 class Tecdoc extends Model
 {
@@ -26,14 +19,13 @@ class Tecdoc extends Model
 //			'password' => $password,
 //		]);
 		//$connection = Yii::$app->getDb();
-		$connection = Yii::$app->db();
-		$command = $connection->createCommand("SELECT MFA_ID, MFA_BRAND FROM MANUFACTURERS WHERE MFA_PC_MFC = '1' ORDER BY MFA_BRAND");
-		$data = $command->queryAll();
+		$data = Yii::$app->db->createCommand("SELECT MFA_ID, MFA_BRAND FROM MANUFACTURERS WHERE MFA_PC_MFC = '1' ORDER BY MFA_BRAND")->queryAll();
 		return $data;
 	}
-	public static function getManufacturedCar($id,$year){
-			$connection = Yii::$app->getDb();
-			$command = $connection->createCommand("
+
+	public static function getManufacturedCar($id, $year)
+	{
+		$data = Yii::$app->db->createCommand("
 			SELECT
 			MOD_ID,
 			mod_pc,
@@ -48,14 +40,14 @@ class Tecdoc extends Model
 				MOD_MFA_ID = '$id' AND
 				CDS_LNG_ID = '16' AND (MOD_PC = '1' AND MOD_CV = '0')
 				AND (MOD_PCON_END >= '$year' OR MOD_PCON_END <=> NULL) AND MOD_PCON_START <= '$year'
-			ORDER BY MOD_CDS_TEXT");
-			$data = $command->queryAll();
-			return $data;
+			ORDER BY MOD_CDS_TEXT")->queryAll();
+		return $data;
 	}
-	public static function getCarModel ($carid){
+
+	public static function getCarModel($carid)
+	{
 		$lng_id = '16';
-		$connection = Yii::$app->getDb();
-		$command = $connection->createCommand("
+		$data = Yii::$app->db->createCommand("
 		SELECT
 			TYP_ID,
 			MFA_BRAND,
@@ -103,16 +95,16 @@ class Tecdoc extends Model
 				TYP_PCON_START,
 				TYP_CCM
 			LIMIT	100
-		");
-		$data = $command->queryAll();
+		")->queryAll();
 		return $data;
 	}
-	public static function getTree($typ_id,$str_id){
+
+	public static function getTree($typ_id, $str_id)
+	{
 		// $typ_id  = '3822';
 		$lng_id = '16';
 		//$str_id = '10001';
-		$connection = Yii::$app->getDb();
-		$command = $connection->createCommand("
+		$data = Yii::$app->db->createCommand("
 		SELECT
 			STR_ID,
 			TEX_TEXT AS STR_DES_TEXT,
@@ -144,14 +136,14 @@ WHERE
 		LIMIT
 			1
 	)
-		");
-		$data = $command->queryAll();
+		")->queryAll();
 		return $data;
 	}
-	public static function getTree2($typ_id,$str_id){
+
+	public static function getTree2($typ_id, $str_id)
+	{
 		$lng_id = '16';
-		$connection = Yii::$app->getDb();
-		$command = $connection->createCommand("
+		$data = Yii::$app->db->createCommand("
 		SELECT 	LA_ART_ID
 		FROM LINK_GA_STR
 		INNER JOIN LINK_LA_TYP ON LAT_TYP_ID = $typ_id AND
@@ -159,14 +151,14 @@ WHERE
 		INNER JOIN LINK_ART ON LA_ID = LAT_LA_ID
 		WHERE LGS_STR_ID <=> $str_id
 		ORDER BY	LA_ART_ID LIMIT	100
-		");
-		$data = $command->queryAll();
+		")->queryAll();
 		return $data;
 	}
-	public static function articles($art_id){
+
+	public static function articles($art_id)
+	{
 		$lng_id = '16';
-		$connection = Yii::$app->getDb();
-		$command = $connection->createCommand("
+		$data = Yii::$app->db->createCommand("
 		SELECT
 			ART_ARTICLE_NR,
 			SUP_BRAND,
@@ -185,14 +177,14 @@ WHERE
 		INNER JOIN DESIGNATIONS AS DESIGNATIONS3 ON DESIGNATIONS3.DES_ID = ACS_KV_STATUS_DES_ID
 		AND DESIGNATIONS3.DES_LNG_ID = $lng_id
 		INNER JOIN DES_TEXTS AS DES_TEXTS3 ON DES_TEXTS3.TEX_ID = DESIGNATIONS3.DES_TEX_ID
-		WHERE ART_ID = $art_id");
-		$data = $command->queryAll();
+		WHERE ART_ID = $art_id")->queryAll();
 		return $data;
 	}
-	public static function art_lookup($number){
+
+	public static function art_lookup($number)
+	{
 		$lng_id = '16';
-		$connection = Yii::$app->getDb();
-		$command = $connection->createCommand("
+		$data = Yii::$app->db->createCommand("
 		SELECT DISTINCT
 	IF (ART_LOOKUP.ARL_KIND IN (3, 4), BRANDS.BRA_BRAND, SUPPLIERS.SUP_BRAND) AS BRAND,
 	ART_LOOKUP.ARL_SEARCH_NUMBER AS NUMBER,
@@ -214,9 +206,7 @@ GROUP BY
 	BRAND,
 	NUMBER
 ;
-		");
-		$data = $command->queryAll();
+		")->queryAll();
 		return $data;
-
 	}
 }

@@ -18,20 +18,19 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        
-        'css/main.css',
+      'css/main.css',
     ];
     public $js = [
-        'js/main.js',
-        'js/sb-admin-2.js',
-        'js/metisMenu.min.js',
-        'js/bootstrap.min.js',
-        '/js/jquery.dataTables.min.js',
-    '/js/dataTables.bootstrap.min.js',
-'/js/dataTables.responsive.js',
+      'js/main.js',
+      'js/sb-admin-2.js',
+      'js/metisMenu.min.js',
+      'js/bootstrap.min.js',
+      '/js/jquery.dataTables.min.js',
+      '/js/dataTables.bootstrap.min.js',
+      '/js/dataTables.responsive.js',
     ];
     public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
+      'yii\web\YiiAsset',
+      'yii\bootstrap\BootstrapAsset',
     ];
 }
