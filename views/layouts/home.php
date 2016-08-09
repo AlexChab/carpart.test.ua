@@ -14,9 +14,6 @@ AppAsset::register($this);
 
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,600,600italic,700italic&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
-<!--	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>-->
-<!--	<script src="/js/bootstrap.min.js"></script>-->
-
    <?php $this->head();?>
 </head>
 <body>

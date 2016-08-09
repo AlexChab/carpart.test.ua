@@ -1,5 +1,10 @@
-@import url(bootstrap.min.css);
+/*@import url(bootstrap.min.css);*/
 @import url(font-awesome.min.css);
+
+/*@font-face {*/
+    /*font-family: 'Open Sans'; !* Имя шрифта *!*/
+    /*src: url(/fonts/OpenSans-Light.ttf); !* Путь к файлу со шрифтом *!*/
+/*}*/
 
 /*color blue #337ab7
 color red #b10000
