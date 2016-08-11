@@ -25,10 +25,10 @@ AppAsset::register($this);
 	<!-- <link href="../dist/css/timeline.css" rel="stylesheet"> -->
 		<!-- Custom CSS -->
 	<link href="/css/sb-admin-2.css" rel="stylesheet">
-	<link href="/css/dataTables.bootstrap.css" rel="stylesheet">
+<!--	<link href="/css/dataTables.bootstrap.css" rel="stylesheet">-->
 
 	<!-- DataTables Responsive CSS -->
-	<link href="/css/dataTables.responsive.css" rel="stylesheet">
+<!--	<link href="/css/dataTables.responsive.css" rel="stylesheet">-->
 		<!-- Morris Charts CSS -->
 	<!-- <link href="../bower_components/morrisjs/morris.css" rel="stylesheet"> -->
 		<!-- Custom Fonts -->

@@ -26,8 +26,8 @@ class AppAsset extends AssetBundle
       'js/metisMenu.min.js',
       'js/bootstrap.min.js',
       '/js/jquery.dataTables.min.js',
-      '/js/dataTables.bootstrap.min.js',
-      '/js/dataTables.responsive.js',
+//      '/js/dataTables.bootstrap.min.js',
+//      '/js/dataTables.responsive.js',
     ];
     public $depends = [
       'yii\web\YiiAsset',

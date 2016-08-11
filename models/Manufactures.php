@@ -10,6 +10,10 @@ class Manufactures extends Model
 		$data = Yii::$app->db1->createCommand("SELECT * FROM db_manufactures ORDER BY MFA_BRAND")->queryAll();
 		return $data;
 	}
+	static function manufacturesGetId($mfa_id){
+		$data = Yii::$app->db1->createCommand("SELECT * FROM db_manufactures WHERE MFA_ID = $mfa_id LIMIT 1")->queryOne();
+		return $data;
+	}
 	function manufacturesAdd($data){
 		$data = Yii::$app->db1->createCommand()->insert('db_manufactures', [
 			'MFA_ID' => $data['mfa_id'],

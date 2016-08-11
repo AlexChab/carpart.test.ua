@@ -12,6 +12,10 @@ namespace app\controllers;
 use Yii;
 use app\models\Tecdoc;
 use app\models\Manufactures;
+use yii\grid\GridView;
+//use yii\data\ActiveDataProvider;
+//use yii\db\Query;
+use yii\data\ArrayDataProvider;
 
 class ContentController extends AppController
 {
@@ -36,22 +40,48 @@ class ContentController extends AppController
 		return ($data);
 		
 	}
+	public function actionTest(){
+
+		$dataProvider = new ArrayDataProvider([
+			'allModels' => Tecdoc::getListManufactured(),
+			'pagination' => [
+				'pageSize' => 20,
+			],
+		]);
+//		print_r($dataProvider);
+		return $this->render('test',['dataProvider' => $dataProvider ]);
+//		echo GridView::widget([
+//			'dataProvider' => $dataProvider,
+//			'columns' => [
+//				'MFA_ID',
+//				'MFA_BRAND',
+//
+//			],
+//		]);
+
+
+	}
 	
 	public function actionAddmanufactures()
 	{
 		$request = Yii::$app->request;
 		$data['mfa_id'] = $request->get('mfa_id');
 		$data['mfa_brand'] = $request->get('mfa_brand');
-		$result = Manufactures::manufacturesAdd($data);
-		return ($result);
+		Manufactures::manufacturesAdd($data);
+		$data_tecdoc = Tecdoc::getListManufactured();
+		$data_site = Manufactures::manufacturesGet();
+		return $this->render('index', array('data_tecdoc' => $data_tecdoc, 'data_site' => $data_site));
+
 	}
 	
 	public function actionDelmanufactures()
 	{
 		$request = Yii::$app->request;
 		$mfa_id = $request->get('mfa_id');
-		$result = Manufactures::manufacturesDel($mfa_id);
-		return ($result);
+		Manufactures::manufacturesDel($mfa_id);
+		$data_tecdoc = Tecdoc::getListManufactured();
+		$data_site = Manufactures::manufacturesGet();
+		return $this->render('index', array('data_tecdoc' => $data_tecdoc, 'data_site' => $data_site));
 	}
 	
 	
