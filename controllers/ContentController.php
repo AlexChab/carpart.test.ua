@@ -53,6 +53,13 @@ class ContentController extends AppController
 		$result = Manufactures::manufacturesDel($mfa_id);
 		return ($result);
 	}
-	
-	
+
+	public function actionTest()
+	{
+		return $this->render('test');
+	}
+	public function actionTest1(){
+		$result = Manufactures::manufacturesGetId('511');
+		print_r($result);
+	}
 }
