@@ -83,6 +83,13 @@ class ContentController extends AppController
 		$data_site = Manufactures::manufacturesGet();
 		return $this->render('index', array('data_tecdoc' => $data_tecdoc, 'data_site' => $data_site));
 	}
-	
-	
+
+	public function actionTest()
+	{
+		return $this->render('test');
+	}
+	public function actionTest1(){
+		$result = Manufactures::manufacturesGetId('511');
+		print_r($result);
+	}
 }
