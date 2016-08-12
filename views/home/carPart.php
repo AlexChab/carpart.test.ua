@@ -19,17 +19,15 @@
 				</thead>
 				<tbody>
 				<?php
-				foreach ($data as $value){
-					if($value[0]['ART_STATUS_TEXT'] == 'Нормальный'){
-						echo'
+				foreach ($data as $value) {
+					if ($value['ART_STATUS_TEXT'] == 'Нормальный') {
+						echo '
 						<tr>
-					
-						<td>'.$value[0]['ART_ARTICLE_NR'].'</td>
-						<td>'.$value[0]['SUP_BRAND'].'</td>
-						<td>'.$value[0]['ART_COMPLETE_DES_TEXT'].'</td>
-						<td class="buy-hover-td"> 165 </td>
-						
-						<td><button class="btn btn-xs btn-default pay-button" id="" type="button" >&nbsp; <i class="fa fa-shopping-cart text-danger" aria-hidden="true"> </i>&nbsp; </button></td>
+							<td>' . $value['ART_ARTICLE_NR'] . '</td>
+							<td>' . $value['SUP_BRAND'] . '</td>
+							<td>' . $value['ART_COMPLETE_DES_TEXT'] . '</td>
+							<td class="buy-hover-td"> 165 </td>
+							<td><button class="btn btn-xs btn-default pay-button" data-artid = "'.$value['LA_ART_ID'].'"data-productid="'.$value['ART_ARTICLE_NR'].'" type="button" >&nbsp; <i class="fa fa-shopping-cart text-danger" aria-hidden="true"> </i>&nbsp; </button></td>
 						</tr>';
 					}
 				}

@@ -60,6 +60,7 @@ class HomeController extends AppController
 		$dataTree = Tecdoc::getTree2($typ_id,$str_id);
 		foreach ($dataTree as $value){
 			$data = Tecdoc::articles($value['LA_ART_ID']);
+			$data['LA_ART_ID']= $value['LA_ART_ID'];
 			$result[] = $data;
 		}
 		return $this->render('carpart',array('data'=>$result));

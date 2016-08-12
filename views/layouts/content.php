@@ -81,51 +81,24 @@ AppAsset::register($this);
 		<div class="navbar-default sidebar" role="navigation">
 			<div class="sidebar-nav navbar-collapse">
 				<ul class="nav" id="side-menu">
-
 					<li>
-						<a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
-					</li>
-
-					<li>
-						<a href="#"><i class="fa fa-wrench fa-fw"></i>Настройка<span class="fa arrow"></span></a>
+						<a href="#"><i class="fa fa-wrench fa-fw"></i>Контент<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
 							<li>
-								<a href="/content/mantable">Производители</a>
+								<a href="/content/contentmfa">Производители</a>
 							</li>
-						</ul>
 
+						</ul>
 					</li>
 					<li>
-						<a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
+						<a href="#"><i class="fa fa-wrench fa-fw"></i>Продажи<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
 							<li>
-								<a href="#">Second Level Item</a>
+								<a href="/order">Заказы</a>
 							</li>
-							<li>
-								<a href="#">Second Level Item</a>
-							</li>
-							<li>
-								<a href="#">Third Level <span class="fa arrow"></span></a>
-								<ul class="nav nav-third-level">
-									<li>
-										<a href="#">Third Level Item</a>
-									</li>
-									<li>
-										<a href="#">Third Level Item</a>
-									</li>
-									<li>
-										<a href="#">Third Level Item</a>
-									</li>
-									<li>
-										<a href="#">Third Level Item</a>
-									</li>
-								</ul>
-								<!-- /.nav-third-level -->
-							</li>
+							
 						</ul>
-						<!-- /.nav-second-level -->
 					</li>
-
 				</ul>
 			</div>
 			<!-- /.sidebar-collapse -->

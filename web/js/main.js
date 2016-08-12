@@ -1,4 +1,12 @@
 $(document).ready(function(){
+    // pay-button click
+    $('.pay-button').on('click',function(e){
+        e.preventDefault();
+        var productid = $(this).data('productid');
+        var artid = $(this).data('artid');
+        console.log (artid );
+    })
+    //
     $('#collapseOne').on('hidden.bs.collapse', function () {
         $("#my-garage").removeClass("fa-chevron-up");
 	    $("#my-garage").addClass("fa-chevron-down");
@@ -59,10 +67,7 @@ $(document).ready(function(){
         console.log('input');
 
     })
-	// pay-button click
-	$(".pay-button").on('click',function(){
-		console.log('pay-button');
-	})
+
 
 	// -- Hover на изменение вида 
 	$('.category').hover(function(){
