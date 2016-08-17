@@ -18,21 +18,10 @@ class ContentController extends AppController
 
 	public function actionIndex()
 	{
-		$userData = yii::$app->user->getId();
-		if($userData == '100'){
-			return $this->render('index');
-		}
-		else{
-			die('Вам сюда нельзя');
-		}
-
-		//return $this->render('login', ['model' => $model,	]);
+	
 
 	}
-	public function actionContentsupl(){
-		$data = Tecdoc::getListSuppliers();
-		$this->debug($data);
-	}
+
 
 	public function actionContentmfa()
 	{
