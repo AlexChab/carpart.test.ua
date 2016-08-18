@@ -1,32 +1,23 @@
 <?php
 use app\assets\AppAsset;
 use yii\helpers\Html;
-
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="ua">
-
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
 	<meta name="author" content="">
-
 	<title>Управление сайтом - partcar</title>
-	<!-- Bootstrap Core CSS -->
 	<link href="/css/bootstrap.min.css" rel="stylesheet">
-
-	<!-- MetisMenu CSS -->
 	<link href="/css/metisMenu.min.css" rel="stylesheet">
-	<!-- Timeline CSS -->
-	<!-- <link href="../dist/css/timeline.css" rel="stylesheet"> -->
-	<!-- Custom CSS -->
-	<link href="/css/sb-admin-2.css" rel="stylesheet">
+		<!-- <link href="../dist/css/timeline.css" rel="stylesheet"> -->
+		<link href="/css/sb-admin-2.css" rel="stylesheet">
 	<!--	<link href="/css/dataTables.bootstrap.css" rel="stylesheet">-->
-
 	<!-- DataTables Responsive CSS -->
 	<!--	<link href="/css/dataTables.responsive.css" rel="stylesheet">-->
 	<!-- Morris Charts CSS -->
@@ -39,9 +30,7 @@ AppAsset::register($this);
 	<!--<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>-->
 	<!--<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>-->
 	<![endif]-->
-
 </head>
-
 <body>
 <?php $this->beginBody() ?>
 <div id="wrapper">
@@ -85,7 +74,7 @@ AppAsset::register($this);
 						<a href="#"><i class="fa fa-wrench fa-fw"></i>Контент<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
 							<li>
-								<a href="/content/contentmfa">Производители</a>
+								<a href="/admin/content/contentmfa">Производители</a>
 								<a href="/admin/content/contentsupl">Брэнды</a>
 							</li>
 
@@ -95,9 +84,8 @@ AppAsset::register($this);
 						<a href="#"><i class="fa fa-wrench fa-fw"></i>Продажи<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
 							<li>
-								<a href="/order">Заказы</a>
+								<a href="/admin/margin">Ценообразование</a>
 							</li>
-
 						</ul>
 					</li>
 				</ul>

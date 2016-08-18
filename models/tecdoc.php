@@ -8,25 +8,28 @@ use yii\db\Query;
 
 class Tecdoc extends Model
 {
+	// Brands section
 	public static function getListSuppliers(){
 		$data = Yii::$app->db->createCommand("SELECT * FROM SUPPLIERS ORDER BY SUP_ID DESC ")->queryAll();
 		return $data;
 	}
+	public static function getListBrands(){
+		$data = Yii::$app->db->createCommand("SELECT * FROM BRANDS ORDER BY BRA_BRAND ASC ")->queryAll();
+		return $data;
+	}
+	static function getBrandsId($bra_id){
+		$data = Yii::$app->db->createCommand("SELECT * FROM BRANDS WHERE BRA_ID = '$bra_id'")->queryOne();
+		return $data;
+	}
+	// End Brands Section
+	 
 	public static function getListManufactured()
 	{
-//		$dsn = 'mysql:host=81.171.2.177;port=33306;dbname=tecdoc_rusiia';
-//		$username = 'tecdoc';
-//		$password = 'Kjgfnf35';
-//		$connection = new Connection([
-//			'dsn' => $dsn,
-//			'username' => $username,
-//			'password' => $password,
-//		]);
-		//$connection = Yii::$app->getDb();
 		$data = Yii::$app->db->createCommand("SELECT MFA_ID, MFA_BRAND FROM MANUFACTURERS WHERE MFA_PC_MFC = '1' ORDER BY MFA_BRAND")->queryAll();
 		return $data;
 	}
 
+	// Section Tecdoc Global
 	public static function getManufacturedCar($id, $year)
 	{
 		$data = Yii::$app->db->createCommand("

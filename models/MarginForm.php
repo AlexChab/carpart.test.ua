@@ -9,7 +9,12 @@
 namespace app\models;
 
 
-class MarginForm
+use yii\base\Model;
+
+class MarginForm extends Model
 {
+	public $bra_id;
+	public $bra_name;
+	public $bra_margin;
 	
 }
