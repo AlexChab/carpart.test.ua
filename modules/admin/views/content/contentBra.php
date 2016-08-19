@@ -15,7 +15,7 @@ $this->title = 'Управление - бренды';
 			],
 			'columns' => [
 				[
-					'attribute' => 'Код',
+					'attribute' => 'Код по TECDOC',
 					'value' => 'BRA_ID',
 				],
 				'BRA_BRAND',

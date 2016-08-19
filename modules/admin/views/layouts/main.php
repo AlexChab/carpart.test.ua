@@ -5,7 +5,7 @@ AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html lang="ua">
+<html lang="ru">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -71,7 +71,7 @@ AppAsset::register($this);
 			<div class="sidebar-nav navbar-collapse">
 				<ul class="nav" id="side-menu">
 					<li>
-						<a href="#"><i class="fa fa-wrench fa-fw"></i>Контент<span class="fa arrow"></span></a>
+						<a href="#"><i class="fa fa-television fa-fw"></i>Контент<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
 							<li>
 								<a href="/admin/content/contentmfa">Производители</a>
@@ -81,10 +81,20 @@ AppAsset::register($this);
 						</ul>
 					</li>
 					<li>
-						<a href="#"><i class="fa fa-wrench fa-fw"></i>Продажи<span class="fa arrow"></span></a>
+						<a href="#"><i class="fa fa-television fa-fw"></i>Контент<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
 							<li>
-								<a href="/admin/margin">Ценообразование</a>
+								<a href="/admin/content/contentmfa">Производители</a>
+								<a href="/admin/content/contentsupl">Брэнды</a>
+							</li>
+
+						</ul>
+					</li>
+					<li>
+						<a href="#"><i class="fa fa-usd fa-fw"></i>Продажи<span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+							<li>
+								<a href="/admin/margin">Наценка Брэнды</a>
 							</li>
 						</ul>
 					</li>

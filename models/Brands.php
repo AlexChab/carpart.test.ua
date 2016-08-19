@@ -16,10 +16,6 @@ class Brands extends Model
 		$data = Yii::$app->db1->createCommand("SELECT * FROM db_brands ORDER BY BRA_BRAND")->queryAll();
 		return $data;
 	}
-	static function getBarandMargin(){
-		$data = Yii::$app->db1->createCommand("SELECT * FROM db_brands LEFT JOIN db_brands_margin ON db_brands.BRA_ID = db_brands_margin.bra_id ORDER BY BRA_BRAND ASC")->queryAll();
-		return $data;
-	}
 	static function brandsGetId($bra_id){
 		$data = Yii::$app->db1->createCommand("SELECT * FROM db_brands WHERE BRA_ID = '$bra_id'")->queryOne();
 		return $data;
@@ -37,4 +33,9 @@ class Brands extends Model
 		$data = Yii::$app->db1->createCommand()->delete('db_brands',['BRA_ID' => $bra_id])->execute();
 		return $data;
 	}
+	static function getBarandMargin(){
+		$data = Yii::$app->db1->createCommand("SELECT * FROM db_brands LEFT JOIN db_brands_margin ON db_brands.BRA_ID = db_brands_margin.bra_id ORDER BY BRA_BRAND ASC")->queryAll();
+		return $data;
+	}
+	
 }

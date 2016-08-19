@@ -16,5 +16,19 @@ class MarginForm extends Model
 	public $bra_id;
 	public $bra_name;
 	public $bra_margin;
+
+	public function rules()
+	{
+		return [
+			['bra_margin', 'required','message' => 'Обязательно для воода'],
+			['bra_margin','integer','min'=>1,'max'=>300,'message' => 'Только целое число']
+		];
+	}
+	public function attributeLabels()
+	{
+		return [
+			'bra_margin'=>'Торговая наценка в % , целое число'
+		];
+	}
 	
 }

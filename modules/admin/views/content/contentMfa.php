@@ -1,6 +1,5 @@
 <?php
 use yii\grid\GridView;
-
 $this->title = 'Управление - контент автомобили';
 ?>
 <div class="row">
@@ -14,7 +13,7 @@ $this->title = 'Управление - контент автомобили';
 				],
 				'columns' => [
 						[
-								'attribute' => 'Код',
+								'attribute' => 'Код по TECDOC',
 								'value' => 'MFA_ID',
 						],
 						'MFA_BRAND',

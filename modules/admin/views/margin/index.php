@@ -9,23 +9,53 @@ $this->title = 'Управление - ценообразование бренд
 		<h4> Управление - наценка Бренды</h4>
 		<?php
 		echo GridView::widget([
-			'dataProvider' => $dataProvider,
-			'formatter' => ['class' => 'yii\i18n\Formatter','nullDisplay' => ''],
-			'tableOptions' => [
-				'class' => 'table table-striped table-bordered table-condensed'
-			],
-			'columns' => [
-				'BRA_BRAND',
-				'BRA_MFC_CODE',
-				'margin',
-
-				['attribute' => 'Действие',
-					'format' => 'html',
-					'value' => function ($data) {
-						return '<a href="/admin/margin/changemargin?bra_id=' . $data['BRA_ID'] .' " class="text-warning">Изменить</a>';
-					},
+				'dataProvider' => $dataProvider,
+				'formatter' => ['class' => 'yii\i18n\Formatter', 'nullDisplay' => ''],
+				'tableOptions' => [
+						'class' => 'table table-striped table-bordered table-condensed'
 				],
-			],
+				'columns' => [
+						[
+								'attribute' => 'Код по TECDOC',
+								'value' => 'BRA_ID',
+								
+						],
+						[
+								'attribute' => 'Название Брэнда',
+								'value' => function ($data) {
+									return $data['BRA_BRAND'];
+								},
+
+						],
+
+						[
+								'attribute' => 'Код Брэнда',
+								'value' => function ($data) {
+									return $data['BRA_BRAND'];
+								},
+
+						],
+
+
+						[
+								'attribute' => 'Наценка %',
+								'contentOptions' =>['class' => 'text-danger text-center'],
+								'value' => function ($data) {
+									return $data['margin'];
+								}
+						],
+
+
+						['attribute' => 'Действие',
+								'format' => 'html',
+								'value' => function ($data) {
+									if (isset($data['margin'])) {
+										return '<a href="/admin/margin/updatemargin?bra_id=' . $data['BRA_ID'] . ' " class="text-warning">Изменить</a>';
+									}
+									return '<a href="/admin/margin/createmargin?bra_id=' . $data['BRA_ID'] . ' " class="text-warning">Создать</a>';
+								},
+						],
+				],
 		]);
 
 		?>
