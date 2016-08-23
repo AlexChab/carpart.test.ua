@@ -1,6 +1,7 @@
 <?php
 use app\assets\AppAsset;
 use yii\helpers\Html;
+use yii\bootstrap\Modal;
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -109,6 +110,7 @@ AppAsset::register($this);
 	<!-- /#page-wrapper -->
 
 </div>
+
 <!-- /#wrapper -->
 
 <!-- jQuery -->

@@ -13,6 +13,7 @@ use yii\base\Model;
 
 class SuppliersForm extends Model
 {
+	
 	public $name;
 	public $shortName;
 
