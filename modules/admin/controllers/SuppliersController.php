@@ -40,6 +40,7 @@ class SuppliersController extends DefaultController
             $customer->name = $form->name;
             $customer->short_name = $form->shortName;
             $customer->save();
+            print_r($customer);
         }
         return $this->render('suppliers',['suppliersForm'=>$form]);
         
@@ -47,7 +48,7 @@ class SuppliersController extends DefaultController
     public function actionView($id)
     {
         return $this->render('view', [
-          'model' => Suppliers::findOne($id),
+          'data' => Suppliers::findOne($id),
         ]);
     }
     public function actionUpdate($id){

@@ -19,7 +19,6 @@ $this->title = 'Управление - Поставщики';
 		echo Html::submitButton('Добавить', ['class' => 'btn btn-success']);
 		ActiveForm::end();
 		?>
-
 	</div>
 	<div class="col-lg-12">
 		<hr>
@@ -35,7 +34,7 @@ $this->title = 'Управление - Поставщики';
 
 				'columns' => [
 						['class' => 'yii\grid\SerialColumn'],
-						'id',
+						
 						'name',
 						'short_name',
 						['attribute' => 'Действие',

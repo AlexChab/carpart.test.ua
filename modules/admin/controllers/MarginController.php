@@ -64,17 +64,18 @@ class MarginController extends DefaultController
 			$data['bra_id'] = $request->get('bra_id');
 			//$this->debug($data);
 			$result = DbBrandsMargin::updateData($data);
-			$data = Brands::getBarandMargin();
-			$dataProvider = new ArrayDataProvider([
-				'allModels' => $data,
-				'pagination' => [
-					'pageSize' => 100,
-				],
-				'sort' => [
-					'attributes' => ['BRA_ID', 'BRA_BRAND','BRA_MFC_CODE','BRA_MF_NR',],
-				],
-			]);
-			return $this->render('index',['dataProvider'=>$dataProvider]);
+//			$data = Brands::getBarandMargin();
+//			$dataProvider = new ArrayDataProvider([
+//				'allModels' => $data,
+//				'pagination' => [
+//					'pageSize' => 100,
+//				],
+//				'sort' => [
+//					'attributes' => ['BRA_ID', 'BRA_BRAND','BRA_MFC_CODE','BRA_MF_NR',],
+//				],
+//			]);
+			//return $this->render('index',['dataProvider'=>$dataProvider]);
+			return $this->redirect('index');
 			
 		}
 		return $this->render('content',['marginForm'=>$model,'bra_id'=>$braId]);

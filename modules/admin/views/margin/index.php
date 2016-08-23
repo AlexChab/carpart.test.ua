@@ -48,11 +48,14 @@ $this->title = 'Управление - ценообразование бренд
 
 						['attribute' => 'Действие',
 								'format' => 'html',
+								'contentOptions' =>['class' => 'text-danger text-center'],
 								'value' => function ($data) {
 									if (isset($data['margin'])) {
-										return '<a href="/admin/margin/updatemargin?bra_id=' . $data['BRA_ID'] . ' " class="text-warning">Изменить</a>';
+										return '<a class="btn btn-info btn-xs" href="/admin/margin/updatemargin?bra_id=' . $data['BRA_ID'] . ' " role="button"><i class="fa fa-pencil" aria-hidden="true"></i></a>';
+										//return '<a href="/admin/margin/updatemargin?bra_id=' . $data['BRA_ID'] . ' " class="text-warning">Изменить</a>';
 									}
-									return '<a href="/admin/margin/createmargin?bra_id=' . $data['BRA_ID'] . ' " class="text-warning">Создать</a>';
+									return '<a class="btn btn-success btn-xs" href="/admin/margin/createmargin?bra_id=' . $data['BRA_ID'] . ' " role="button"><i class="fa fa-bars" aria-hidden="true"></i></a>';
+									//return '<a href="/admin/margin/createmargin?bra_id=' . $data['BRA_ID'] . ' " class="text-warning">Создать</a>';
 								},
 						],
 				],
