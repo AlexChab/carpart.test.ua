@@ -5,7 +5,7 @@
 	<div class="panel-body">
 		<div class="row">
 			<div class="col-xs-6 col-sm-6 col-md-4">
-				<p class="h4 text-primary text-center"><i class="fa fa-folder-open-o text-success" aria-hidden="true"> </i><b> Tree</b></p>
+				<p class="h4 text-primary text-center"><i class="fa fa-folder-open-o text-success" aria-hidden="true"> </i><b>Каталог запчастей </b></p>
 				<ul class="category">
 <!--					[STR_ID] => 10101-->
 <!--					[STR_DES_TEXT] => Кузов-->

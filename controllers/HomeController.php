@@ -12,6 +12,7 @@ use Yii;
 use app\models\Tecdoc;
 use app\models\Manufactures;
 use yii\web\Controller;
+use app\models\Price;
 
 
 class HomeController extends AppController
@@ -85,12 +86,14 @@ class HomeController extends AppController
 					<th>Тип номера</th>
 					<th>Артикульный номер</th>
 					<th>Название изделия</th>
+					<th>Название изделия</th>
 
 				</tr>
 				</thead>
 				<tbody>';
 		foreach ($data as $value){
-			
+			$findPrice = Price::find()->where(['partcode'=>$value['NUMBER']])->one();
+			$price = $findPrice['price'];
 			echo'
 						
 						<tr>
@@ -100,6 +103,7 @@ class HomeController extends AppController
 						<td>'.$value['ARL_KIND'].'</td>
 						<td>'.$value['ARL_ART_ID'].'</td>
 						<td>'.$value['ART_COMPLETE_DES_TEXT'].'</td>
+						<td>'.$price.'</td>
 						</tr>';
 			
 		}

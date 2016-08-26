@@ -6,6 +6,10 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+  'aliases' => [
+    '@upload' => '\upload',
+
+  ],
     'modules' => [
       'admin' => [
         'class' => 'app\modules\admin\Content',
