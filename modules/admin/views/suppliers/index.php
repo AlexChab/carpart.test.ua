@@ -2,6 +2,7 @@
 use yii\grid\GridView;
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
+use yii\bootstrap\Modal;
 
 $this->title = 'Управление - Поставщики';
 ?>
@@ -11,13 +12,22 @@ $this->title = 'Управление - Поставщики';
 		<hr>
 	</div>
 	<div class="col-lg-12">
-		<h4>Добавить нового</h4>
+
 		<?php
-		$form = ActiveForm::begin(['options' => ['class' => 'col-sm-4']]);
+		Modal::begin([
+			'header' => '<p>Новый поставщик</p>',
+			'toggleButton' => ['label' => 'Добавить','class'=>'btn btn-success'],
+		]);
+
+
+		$form = ActiveForm::begin(['options' => ['class' => '']]);
 		echo $form->field($suppliersForm, 'name');
 		echo $form->field($suppliersForm, 'shortName');
 		echo Html::submitButton('Добавить', ['class' => 'btn btn-success']);
 		ActiveForm::end();
+
+
+		Modal::end();
 		?>
 	</div>
 	<div class="col-lg-12">

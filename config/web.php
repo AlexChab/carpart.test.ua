@@ -13,6 +13,14 @@ $config = [
       ],
     ],
     'components' => [
+      'assetManager' => [
+        'bundles' => [
+          'yii\bootstrap\BootstrapAsset' => [
+            'css' => ['css/bootstrap.css'],
+            'js' => ['js/bootstrap.js'],
+          ],
+        ],
+      ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '2znULUx_eMFn9ylQ1GlKhGovKrfdCt08',

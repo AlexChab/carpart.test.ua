@@ -1,18 +1,16 @@
 <?php
-use app\assets\AppAsset;
+use app\assets\AdminAsset;
 use yii\helpers\Html;
-use yii\bootstrap\Modal;
-AppAsset::register($this);
+
+AdminAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="<?= Yii::$app->charset ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="">
-	<meta name="author" content="">
+	<?= Html::csrfMetaTags() ?>
 	<title>Управление сайтом - partcar</title>
 	<link href="/css/bootstrap.min.css" rel="stylesheet">
 	<link href="/css/metisMenu.min.css" rel="stylesheet">
@@ -25,6 +23,7 @@ AppAsset::register($this);
 	<!-- <link href="../bower_components/morrisjs/morris.css" rel="stylesheet"> -->
 	<!-- Custom Fonts -->
 	<link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<!--	<link href="/css/main.css" rel="stylesheet" type="text/css">-->
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
