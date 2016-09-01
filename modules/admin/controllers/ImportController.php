@@ -12,7 +12,53 @@ use app\models\Price;
 
 class ImportController extends DefaultController
 {
-	public function actionPrice(){
+	public function actionPriceimport(){
+
+		//$file_name = $_GET['path'];
+
+		$suppliers = '16';
+		if (($handle_f = fopen('upload\pricelist.csv', "r")) !== FALSE){
+			// проверяется, надо ли продолжать импорт с определенного места
+			// если да, то указатель перемещается на это место
+			if(isset($_GET['ftell'])){
+				fseek($handle_f,$_GET['ftell']);
+			}
+			$i=0;
+			if(isset($_GET['x'])){
+				$x=$_GET['x'];
+				echo 'Текущий пакет '.$x.' записей <br>';
+			} else {
+				$x = 0;
+			}
+			// построчное считывание и анализ строк из файла
+			while ( ($data_f = fgetcsv($handle_f, 1000, ";"))!== FALSE) {
+				$model = new Price();
+				$model->suppliers_id = $suppliers;
+				$model->partcode= $data_f[0];
+				$model->partname = trim(preg_replace('/(^"|"$)/', '', $data_f[1]));
+				$model->partbrand= trim(preg_replace('/(^"|"$)/', '', $data_f[2]));
+				$model->qty= trim(preg_replace('/(^"|"$)/', '', $data_f[3]));;
+				$model->price= trim(preg_replace('/(^"|"$)/', '', $data_f[4]));
+				$model->typcur= $data_f[5];
+				$model->save();
+				if(!strstr($i/100,'.')){
+					echo 'Импортировано записей : '.$x.'<br />';
+					flush();
+					ob_flush();
+				}
+
+				if($i==1000){
+					//print '<meta http-equiv="Refresh" content="0; url='.$_SERVER['PHP_SELF'].'?x='.$x.'&amp;ftell='.ftell($handle_f).'&amp;path='.$_GET['path'].'">';
+					print '<meta http-equiv="Refresh" content="0; url='.$_SERVER['PHP_SELF'].'admin/import/priceimport?x='.$x.'&amp;ftell='.ftell($handle_f).'">';
+					exit;
+				}
+				$x++;
+				$i++;
+
+			}
+			fclose($handle_f);
+		}
+		else {$err = 1; echo "Не получилось открыть файл";}
 
 	}
 	public function actionImportfile(){
