@@ -9,9 +9,28 @@
 namespace app\modules\admin\controllers;
 
 use app\models\Price;
+use Yii;
+use app\models\Priceimport;
+use app\models\UploadForm;
+use yii\web\UploadedFile;
 
 class ImportController extends DefaultController
 {
+	public function actionIndex(){
+		$model = new UploadForm();
+
+		if (Yii::$app->request->isPost) {
+			$model->dataFile = UploadedFile::getInstance($model, 'dataFile');
+			if ($model->upload()) {
+			//$this->actionPriceimport();
+				return $this->render('index', ['model' => $model,'error' => 'Файл загружен']);
+			}
+		}
+
+		return $this->render('index', ['model' => $model]);
+		// $this->render('index');
+
+}
 	public function actionPriceimport(){
 
 		//$file_name = $_GET['path'];
@@ -20,6 +39,7 @@ class ImportController extends DefaultController
 		if (($handle_f = fopen('upload\pricelist.csv', "r")) !== FALSE){
 			// проверяется, надо ли продолжать импорт с определенного места
 			// если да, то указатель перемещается на это место
+			$dataImport = '';
 			if(isset($_GET['ftell'])){
 				fseek($handle_f,$_GET['ftell']);
 			}
@@ -32,22 +52,25 @@ class ImportController extends DefaultController
 			}
 			// построчное считывание и анализ строк из файла
 			while ( ($data_f = fgetcsv($handle_f, 1000, ";"))!== FALSE) {
-				$model = new Price();
-				$model->suppliers_id = $suppliers;
-				$model->partcode= $data_f[0];
-				$model->partname = trim(preg_replace('/(^"|"$)/', '', $data_f[1]));
-				$model->partbrand= trim(preg_replace('/(^"|"$)/', '', $data_f[2]));
-				$model->qty= trim(preg_replace('/(^"|"$)/', '', $data_f[3]));;
-				$model->price= trim(preg_replace('/(^"|"$)/', '', $data_f[4]));
-				$model->typcur= $data_f[5];
-				$model->save();
+				$implodeData = "('".$data_f[0]."','".$data_f[2]."','".$data_f[3]."','".$data_f[4]."','".$data_f[5]."')";
+				$dataImport = $dataImport.$implodeData.',';
+//				$model = new Price();
+//				$model->suppliers_id = $suppliers;
+//				$model->partcode= $data_f[0];
+//				$model->partname = trim(preg_replace('/(^"|"$)/', '', $data_f[1]));
+//				$model->partbrand= trim(preg_replace('/(^"|"$)/', '', $data_f[2]));
+//				$model->qty= trim(preg_replace('/(^"|"$)/', '', $data_f[3]));;
+//				$model->price= trim(preg_replace('/(^"|"$)/', '', $data_f[4]));
+//				$model->typcur= $data_f[5];
+//				$model->save();
 				if(!strstr($i/100,'.')){
-//					Yii::$app->db->createCommand()->batchInsert('tableName', ['id', 'title', 'created_at'], [
-//						[1, 'title1', '2015-04-10'],
-//						[2, 'title2', '2015-04-11'],
-//						[3, 'title3', '2015-04-12'],
+					//echo $dataImport;
+					$result = Priceimport::insert($dataImport);
+					$dataImport ='';
+//					Yii::$app->db1->createCommand()->batchInsert('price', ['partcode','partname','partbrand','qty','price','typcur'], [
+//						$dataImport
 //					])->execute();
-					echo 'Импортировано записей : '.$x.'<br />';
+					echo 'Импортировано записей : '.$x.$result.'<br />';
 					flush();
 					ob_flush();
 				}
