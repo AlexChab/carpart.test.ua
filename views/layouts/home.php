@@ -31,8 +31,8 @@ AppAsset::register($this);
 					</div>
 					<div class="col-md-6 col-sm-6 col-xs-6">
 						<ul class="pull-left" >
-							<li class="h3"><i class="fa fa-volume-control-phone text-danger"></i> (050) <span class="text-primary">253-33-45</span> </li>
-							<li class="h3"><i class="fa fa-volume-control-phone text-danger"></i> (067)<span class="text-primary"> 253-33-45 </span> </li>
+							<li class="h3"><i class="fa fa-volume-control-phone text-danger"></i> (048) <span class="text-primary">706-93-40</span> </li>
+							<li class="h3"><i class="fa fa-volume-control-phone text-danger"></i> (067) <span class="text-primary">502-20-32 </span> </li>
 						</ul>
 					</div>
 					<div class="col-md-6 col-sm-6 col-xs-6">
@@ -150,15 +150,15 @@ AppAsset::register($this);
 		<hr>
 		<div class="col-md-4 col-sm-4 col-xs-6">
 			<address>
-				<strong>Магазин - склад</strong><br>
+				<strong>Магазин - склад № 200</strong><br>
 				65100 г.Одесса , авторынок "Успех"<br>
-				ул. Маршала Жукова 1<br>
-				<abbr title="Phone">тел:</abbr> (050) 455-5578
+				пр-т. маршала Жукова 2А<br>
+				<abbr title="Phone">тел:</abbr> +38(048)706-93-40 +38(067)502-20-32
 			</address>
 
 			<address>
 				<strong>Почта</strong><br>
-				<a href="mailto:#">uspex@example.com</a>
+				<a href="mailto:#">pit-stop_2001@mail.ru</a>
 			</address>
 		</div>
 		<div class="col-md-4 col-sm-4 col-xs-6">
@@ -169,7 +169,7 @@ AppAsset::register($this);
 			</ul>
 		</div>
 		<div class="col-md-4 col-sm-4 hidden-xs">
-			<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit ullam, aliquam, accusamus qui assumenda sequi aut illo ducimus corporis consequuntur magni reiciendis error magnam vitae, vel. Id excepturi ipsa at.</p></div>
+			<p> Автомагазин partcar.com.ua работает со всеми покупателями мы рады помочь каждому, кто обратится к нам за помощью</p></div>
 	</div>
 </div>
 <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="smallModal" id="smallModal">

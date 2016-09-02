@@ -42,6 +42,11 @@ class ImportController extends DefaultController
 				$model->typcur= $data_f[5];
 				$model->save();
 				if(!strstr($i/100,'.')){
+//					Yii::$app->db->createCommand()->batchInsert('tableName', ['id', 'title', 'created_at'], [
+//						[1, 'title1', '2015-04-10'],
+//						[2, 'title2', '2015-04-11'],
+//						[3, 'title3', '2015-04-12'],
+//					])->execute();
 					echo 'Импортировано записей : '.$x.'<br />';
 					flush();
 					ob_flush();
