@@ -18,24 +18,24 @@ class ImportController extends DefaultController
 {
 	public function actionIndex(){
 		$model = new UploadForm();
-
-		if (Yii::$app->request->isPost) {
-			$model->dataFile = UploadedFile::getInstance($model, 'dataFile');
-			if ($model->upload()) {
-			//$this->actionPriceimport();
-				return $this->render('index', ['model' => $model,'error' => 'Файл загружен']);
-			}
+		if($model->load(Yii::$app->request->post()) && $model->validate()){
+			$file = $model->dataFile = UploadedFile::getInstance($model, 'dataFile');
+			$file->saveAs('upload/pricelist.csv');
+			$suppliers = $model->suppliers;
+			$this->actionPriceimport($suppliers);
+			$suppliers ='Прайс загружен';
 		}
+		else{
+			$suppliers ='Загрузка прайсов';
+		}
+		return $this->render('index', ['model' => $model,'data' => $suppliers]);
+	}
 
-		return $this->render('index', ['model' => $model]);
-		// $this->render('index');
-
-}
-	public function actionPriceimport(){
-
-		//$file_name = $_GET['path'];
-
-		$suppliers = '16';
+	public function actionPriceimport($suppliers){
+		if($suppliers){}
+		else{
+			$suppliers = $_GET['suppliers'] ;
+		}
 		if (($handle_f = fopen('upload\pricelist.csv', "r")) !== FALSE){
 			// проверяется, надо ли продолжать импорт с определенного места
 			// если да, то указатель перемещается на это место
@@ -46,48 +46,37 @@ class ImportController extends DefaultController
 			$i=0;
 			if(isset($_GET['x'])){
 				$x=$_GET['x'];
-				echo 'Текущий пакет '.$x.' записей <br>';
+		//	echo 'Текущий пакет '.$x.' записей <br>';
 			} else {
 				$x = 0;
-			}
+		}
 			// построчное считывание и анализ строк из файла
-			while ( ($data_f = fgetcsv($handle_f, 1000, ";"))!== FALSE) {
-				$implodeData = "('".$data_f[0]."','".$data_f[2]."','".$data_f[3]."','".$data_f[4]."','".$data_f[5]."')";
+		while ( ($data_f = fgetcsv($handle_f, 1000, ";"))!== FALSE) {
+				$implodeData = "('".$suppliers."','". preg_replace ('![^\w\d\s]*!','',$data_f[0]) ."','".$data_f[2]."','".$data_f[3]."','".$data_f[4]."','".$data_f[5]."')";
 				$dataImport = $dataImport.$implodeData.',';
-//				$model = new Price();
-//				$model->suppliers_id = $suppliers;
-//				$model->partcode= $data_f[0];
-//				$model->partname = trim(preg_replace('/(^"|"$)/', '', $data_f[1]));
-//				$model->partbrand= trim(preg_replace('/(^"|"$)/', '', $data_f[2]));
-//				$model->qty= trim(preg_replace('/(^"|"$)/', '', $data_f[3]));;
-//				$model->price= trim(preg_replace('/(^"|"$)/', '', $data_f[4]));
-//				$model->typcur= $data_f[5];
-//				$model->save();
-				if(!strstr($i/100,'.')){
-					//echo $dataImport;
-					$result = Priceimport::insert($dataImport);
+//			$model->partbrand= trim(preg_replace('/(^"|"$)/', '', $data_f[2]));
+				//if(!strstr($i/100,'.')){
+				if(($i%100) == 0){
+					Priceimport::insert($dataImport);
 					$dataImport ='';
-//					Yii::$app->db1->createCommand()->batchInsert('price', ['partcode','partname','partbrand','qty','price','typcur'], [
-//						$dataImport
-//					])->execute();
-					echo 'Импортировано записей : '.$x.$result.'<br />';
+				 // echo 'Импортировано записей : '.$x.'<br />';
 					flush();
 					ob_flush();
 				}
-
 				if($i==1000){
 					//print '<meta http-equiv="Refresh" content="0; url='.$_SERVER['PHP_SELF'].'?x='.$x.'&amp;ftell='.ftell($handle_f).'&amp;path='.$_GET['path'].'">';
-					print '<meta http-equiv="Refresh" content="0; url='.$_SERVER['PHP_SELF'].'admin/import/priceimport?x='.$x.'&amp;ftell='.ftell($handle_f).'">';
+					print '<meta http-equiv="Refresh" content="0; url='.$_SERVER['PHP_SELF'].'admin/import/priceimport?x='.$x.'&amp;ftell='.ftell($handle_f).'&amp;suppliers='.$suppliers.'">';
 					exit;
 				}
 				$x++;
 				$i++;
-
 			}
+			Priceimport::insert($dataImport);
 			fclose($handle_f);
+			unlink('upload\pricelist.csv');
+			return $this->redirect('index');
 		}
-		else {$err = 1; echo "Не получилось открыть файл";}
-
+		return $this->redirect('index');
 	}
 	public function actionImportfile(){
 		$suppliers = "16";

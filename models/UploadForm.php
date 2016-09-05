@@ -10,27 +10,24 @@ namespace app\models;
 
 
 use yii\base\Model;
-use yii\web\UploadedFile;
 
 class UploadForm extends Model
 {
-
 	public $dataFile;
+	public $suppliers;
 
 	public function rules()
 	{
 		return [
-			[['dataFile'], 'file', 'skipOnEmpty' => false, 'maxSize' => 1024*1024*8],
+		[['dataFile'], 'file', 'extensions' => 'csv' ],
+		[['suppliers',],'required'],
 		];
 	}
-
-	public function upload()
+	public function attributeLabels()
 	{
-		if ($this->validate()) {
-			$this->dataFile->saveAs('upload/' . $this->dataFile->baseName . '.' . $this->dataFile->extension);
-			return true;
-		} else {
-			return false;
-		}
+		return [
+			'dataFile'=>'Выбор файла *.csv',
+			'suppliers' =>'Выбор поставщика',
+		];
 	}
 }

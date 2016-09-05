@@ -18,7 +18,7 @@ class Priceimport extends Model
 
 //		$data = Yii::$app->db1->createCommand()->batchInsert('price', ['partcode','partname','partbrand','qty','price','typcur'], [
 //				$data	])->execute();
-		$data = Yii::$app->db1->createCommand("INSERT INTO price (partcode,partbrand,qty,price,typcur) VALUES ".substr($data, 0, -1))->execute();
+		$data = Yii::$app->db1->createCommand("INSERT INTO price (suppliers_id,partcode,partbrand,qty,price,typcur) VALUES ".substr($data, 0, -1))->execute();
 		return $data;
 	}
 	
