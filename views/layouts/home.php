@@ -62,72 +62,69 @@ AppAsset::register($this);
 				<div class="panel-heading panel-heading-wrap h5"><i class="fa fa-car text-danger " aria-hidden="true"></i> Мой гараж <i id="my-garage" class="fa fa-chevron-down pull-right" aria-hidden="true" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"></i></div>
 				<div id="collapseOne" class="panel-collapse collapse ">
 					<div class="panel-body panel-body-wrap">
-						<div class="form-group" id="form-id-1111">
-							<div class="input-group">
-									<span class="input-group-btn">
-										<button class="btn btn-default  del-my-car" type="button" id="id-1111" data-car-info="Wolksvagen"><i class="fa fa-times text-muted" aria-hidden="true"></i> </button>
-									</span>
-								<input type="button" class="form-control  my-car  btn-success" value="Wlokswagen" >
-							</div>
-						</div>
-						<div class="form-group" id="form-id-2222">
-							<div class="input-group">
-									<span class="input-group-btn">
-										<button class="btn btn-default del-my-car " id="id-2222" type="button" data-car-info="BMW-x5"><i class="fa fa-times text-muted" aria-hidden="true" ></i> </button>
-									</span>
-								<input type="button" class="form-control  my-car"  value="BMW-X5" >
-							</div>
-						</div>
+<!--						<div class="form-group" id="form-id-1111">-->
+<!--							<div class="input-group">-->
+<!--									<span class="input-group-btn">-->
+<!--										<button class="btn btn-default  del-my-car" type="button" id="id-1111" data-car-info="Wolksvagen"><i class="fa fa-times text-muted" aria-hidden="true"></i> </button>-->
+<!--									</span>-->
+<!--								<input type="button" class="form-control  my-car  btn-success" value="Wlokswagen" >-->
+<!--							</div>-->
+<!--						</div>-->
+<!--						<div class="form-group" id="form-id-2222">-->
+<!--							<div class="input-group">-->
+<!--									<span class="input-group-btn">-->
+<!--										<button class="btn btn-default del-my-car " id="id-2222" type="button" data-car-info="BMW-x5"><i class="fa fa-times text-muted" aria-hidden="true" ></i> </button>-->
+<!--									</span>-->
+<!--								<input type="button" class="form-control  my-car"  value="BMW-X5" >-->
+<!--							</div>-->
+<!--						</div>-->
 					</div>
 				</div>
 			</div>
 			<div class="panel panel-default panel-wrap">
-				<div class="panel-heading panel-heading-wrap h5"><i class="fa fa-cogs text-danger" aria-hidden="true"></i> Выбор Автомобиля</div>
+				<div class="panel-heading panel-heading-wrap h5"><i class="fa fa-cogs text-danger" aria-hidden="true"></i> Подбор запчасти по автомобилю </div>
 				<div class="panel-body panel-body-wrap">
 					<div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon" id="basic-addon1"><i class="fa fa-cog text-success" aria-hidden="true"></i></span>
-							<a href="/home"><input type="button" class="btn btn-primary form-control" id="selectCarBrand"  value="Марка автмобиля" aria-describedby="basic-addon1"></a>
+							<a href="/home"><input type="button" class="btn btn-primary form-control" id="selectCarBrand"  value="Выбор автомобиля" aria-describedby="basic-addon1"></a>
 						</div>
-
 					</div>
+<!--					<div class="form-group">-->
+<!--						<div class="input-group">-->
+<!--							<span class="input-group-addon" id="basic-addon1"><i class="fa fa-cog text-muted" aria-hidden="true"></i></span>--><?php //Html::a('','/home')?>
+<!--							<input type="button" class="btn btn-primary form-control" id="selectCarBrand"  value="Год выпуска" aria-describedby="basic-addon1">-->
+<!--						</div>-->
+<!--					</div>-->
+<!--					<div class="form-group">-->
+<!--						<div class="input-group">-->
+<!--							<span class="input-group-addon" id="basic-addon1"><i class="fa fa-cog text-muted" aria-hidden="true"></i></span>-->
+<!--							<input type="button" class="btn btn-primary form-control" id="selectCarBrand"  value="Модель" aria-describedby="basic-addon1">-->
+<!--						</div>-->
+<!--					</div>-->
+<!--					<div class="form-group">-->
+<!--						<div class="input-group">-->
+<!--							<span class="input-group-addon" id="basic-addon1"><i class="fa fa-cog text-muted" aria-hidden="true"></i></span>-->
+<!--							<input type="button" class="btn btn-primary form-control" id="selectCarBrand"  value="Двигатель" aria-describedby="basic-addon1">-->
+<!--						</div>-->
+<!--					</div>-->
+<!--					<div class="form-group">-->
+<!--						<div class="input-group">-->
+<!--							<span class="input-group-addon" id="forInputVinCode"><i class="fa fa-cog text-muted" aria-hidden="true"></i></span>-->
+<!--							<input type="text" class="form-control" id="InputVinCode" name="inputVinCode"  placeholder="Вин код автомобиля" aria-describedby="forInputVinCode">-->
+<!--						</div>-->
+<!---->
+<!--					</div>-->
+				</div>
+			</div>
+			<div class="panel panel-default panel-wrap">
+				<div class="panel-heading panel-heading-wrap h5"><i class="fa fa-cogs text-danger" aria-hidden="true"></i> Подбор запчасти по ор.номеру </div>
+				<div class="panel-body panel-body-wrap">
 					<div class="form-group">
-						<div class="input-group">
-							<span class="input-group-addon" id="basic-addon1"><i class="fa fa-cog text-muted" aria-hidden="true"></i></span><?php Html::a('','/home')?>
-							<input type="button" class="btn btn-primary form-control" id="selectCarBrand"  value="Год выпуска" aria-describedby="basic-addon1">
-						</div>
-
-						<!-- 	<label for="selectCarYearMan">Год выпуска</label>
-							<select id="selectCarYearMan" class="form-control">
-								<option>2000</option>
-								<option>2001</option>
-							</select> -->
-					</div>
-					<div class="form-group">
-						<div class="input-group">
-							<span class="input-group-addon" id="basic-addon1"><i class="fa fa-cog text-muted" aria-hidden="true"></i></span>
-							<input type="button" class="btn btn-primary form-control" id="selectCarBrand"  value="Модель" aria-describedby="basic-addon1">
-						</div>
-
-						<!-- <label for="selectCarYearMan">Модель</label>
-						<select id="selectCarYearMan" class="form-control">
-							<option>Model 1,5</option>
-							<option>Model 1,6</option>
-						</select> -->
-					</div>
-					<div class="form-group">
-						<div class="input-group">
-							<span class="input-group-addon" id="basic-addon1"><i class="fa fa-cog text-muted" aria-hidden="true"></i></span>
-							<input type="button" class="btn btn-primary form-control" id="selectCarBrand"  value="Двигатель" aria-describedby="basic-addon1">
-						</div>
-
-					</div>
-					<div class="form-group">
-						<div class="input-group">
-							<span class="input-group-addon" id="forInputVinCode"><i class="fa fa-cog text-muted" aria-hidden="true"></i></span>
-							<input type="text" class="form-control" id="InputVinCode" name="inputVinCode"  placeholder="Вин код автомобиля" aria-describedby="forInputVinCode">
-						</div>
-
+							<div class="input-group">
+								<span class="input-group-addon" id="forinputOriginalNumber"><i class="fa fa-search text-info" aria-hidden="true"></i></span>
+								<input type="text" class="form-control" id="inputOriginalNumber" name="inputOriginalNumber"  placeholder="Оригинальный номер" aria-describedby="forInputVinCode">
+							</div>
 					</div>
 				</div>
 			</div>

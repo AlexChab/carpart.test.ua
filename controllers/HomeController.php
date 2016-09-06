@@ -49,7 +49,6 @@ class HomeController extends AppController
 		$request = Yii::$app->request;
 		$typ_id = $request->get('typ_id');
 		$str_id = $request->get('str_id');
-		
 		$data = Tecdoc::getTree($typ_id,$str_id);
 		return $this->render('parttree',array('data'=>$data,'typ_id'=>$typ_id,'str_id'=>$str_id));
 		//$this->debug($data);
