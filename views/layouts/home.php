@@ -48,12 +48,12 @@ AppAsset::register($this);
 					<p> Позиций : <b> 00 </b> на сумму: <b> 00 грн.</b></p>
 				</div>
 			</div>
-			<div class="input-group">
-				<input type="text" id="inputSearchArt" class="form-control" placeholder="Поиск по артикулу...">
-					<span class="input-group-btn">
-					<button id="searchArt" class="btn btn-danger" type="button">Поиск</button>
-					</span>
-			</div>
+<!--			<div class="input-group">-->
+<!--				<input type="text" id="inputSearchArt" class="form-control" placeholder="Поиск по артикулу...">-->
+<!--					<span class="input-group-btn">-->
+<!--					<button id="searchArt" class="btn btn-danger" type="button">Поиск</button>-->
+<!--					</span>-->
+<!--			</div>-->
 		</div>
 	</div>
 	<div class="row">
@@ -118,21 +118,38 @@ AppAsset::register($this);
 				</div>
 			</div>
 			<div class="panel panel-default panel-wrap">
-				<div class="panel-heading panel-heading-wrap h5"><i class="fa fa-cogs text-danger" aria-hidden="true"></i> Подбор запчасти по ор.номеру </div>
+				<div class="panel-heading panel-heading-wrap h5"><i class="fa fa-cogs text-danger" aria-hidden="true"></i> Подбор запчасти по OEM номеру </div>
 				<div class="panel-body panel-body-wrap">
 					<div class="form-group">
-							<div class="input-group">
-								<span class="input-group-addon" id="forinputOriginalNumber"><i class="fa fa-search text-info" aria-hidden="true"></i></span>
-								<input type="text" class="form-control" id="inputOriginalNumber" name="inputOriginalNumber"  placeholder="Оригинальный номер" aria-describedby="forInputVinCode">
-							</div>
+<!--							<div class="input-group">-->
+<!--								<span class="input-group-addon" id="forinputOriginalNumber"><i class="fa fa-search text-info" aria-hidden="true"></i></span>-->
+<!--								<input type="text" class="form-control" id="inputOriginalNumber" name="inputOriginalNumber"  placeholder="Оригинальный OEM номер" aria-describedby="forInputVinCode">-->
+<!--							</div>-->
+						<div class="input-group">
+							<input type="text" id="inputSearchOem" class="form-control" placeholder="Поиск по OEM номеру ..">
+								<span class="input-group-btn">
+									<button id="searchOem" class="btn btn-default" type="button"><i class="fa fa-search text-info" aria-hidden="true"></i></button>
+								</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default panel-wrap">
+				<div class="panel-heading panel-heading-wrap h5"><i class="fa fa-cogs text-danger" aria-hidden="true"></i> Подбор запчасти по артикулу </div>
+				<div class="panel-body panel-body-wrap">
+					<div class="form-group">
+						<div class="input-group">
+							<input type="text" id="inputSearchArt" class="form-control" placeholder="Поиск по артикулу...">
+								<span class="input-group-btn">
+									<button id="searchArt" class="btn btn-default" type="button"><i class="fa fa-search text-info" aria-hidden="true"></i></button>
+								</span>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="col-md-9" id="contentBody">
-			<?= Breadcrumbs::widget([
-					'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-			]) ?>
+
 <!--			<ol class="breadcrumb">-->
 <!--				<li><a href="#"><i class="fa fa-home text-danger " aria-hidden="true"></i></a></li>-->
 <!--				<li><a href="#">Марка</a></li>-->

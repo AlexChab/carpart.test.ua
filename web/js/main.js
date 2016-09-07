@@ -47,15 +47,16 @@ $(document).ready(function(){
 
 	// search panel on header
     $("#searchArt").on('click',function () {
-        error_message = "Error ajax";
+        error_message = "Error Article request, please contact admin";
         var inputSearchArt = $("#inputSearchArt").val().replace(/\s+/g, '');
         $.ajax({
             type: 'GET',
             url: '/home/searchart?article='+inputSearchArt,
-            success: function(data){
+            success: function(data)
+            {
                 $("#contentBody").empty();
                 $("#contentBody").html(data);
-                
+
             },
             error: function()
             {
@@ -63,13 +64,28 @@ $(document).ready(function(){
             }
 
         });
-        console.log(inputSearchArt);
-        console.log('input');
+    })
+    $("#searchOem").on('click',function () {
+        error_message = "Error ajax Oem request,please contact admin";
+        var inputSearchOem = $("#inputSearchOem").val().replace(/\s+/g, '');
+        $.ajax({
+            type: 'GET',
+            url: '/oem/getoem?oem='+inputSearchOem,
+            success: function(data)
+            {
+                $("#contentBody").empty();
+                $("#contentBody").html(data);
 
+            },
+            error: function()
+            {
+                alert(error_message);
+            }
+        });
     })
 
 
-	// -- Hover на изменение вида 
+    // -- Hover на изменение вида 
 	$('.category').hover(function(){
 		console.log();
 		// this.('i').addClass('fa-spin');
@@ -81,9 +97,8 @@ $(document).ready(function(){
        responsive: true
     });
 
-
 });
 $(window).load(function(){
-	console.log('onload');
+
 
 });

@@ -89,10 +89,13 @@ AdminAsset::register($this);
 								<a href="/admin/margin">Наценка Брэнды</a>
 							</li>
 							<li>
-								<a href="/admin/import">Импорт прайсов</a>
+								<a href="/admin/suppliers">Поставщики</a>
 							</li>
 							<li>
-								<a href="/admin/suppliers">Поставщики</a>
+								<a href="/admin/currency">Курс валют</a>
+							</li>
+							<li>
+								<a href="/admin/import">Импорт прайсов</a>
 							</li>
 						</ul>
 					</li>
