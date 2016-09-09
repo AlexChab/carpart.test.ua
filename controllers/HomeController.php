@@ -64,7 +64,6 @@ class HomeController extends AppController
 			$result[] = $data;
 		}
 		return $this->render('carpart',array('data'=>$result));
-		//$this->debug($result);
 	}
 	public function actionSearchart(){
 		$request = Yii::$app->request;

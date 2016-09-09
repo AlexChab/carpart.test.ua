@@ -8,8 +8,10 @@
 
 namespace app\modules\admin\controllers;
 
+use Yii;
 use app\models\Currency;
 use yii\data\ArrayDataProvider;
+use app\models\CurrencyForm;
 
 class CurrencyController extends DefaultController
 {
@@ -32,15 +34,16 @@ class CurrencyController extends DefaultController
 		if($form->load(Yii::$app->request->post()) && $form->validate()) {
 
 			$values = [
-				'name' => $form->name,
-				'short_name' => $form->shortName,
+				'rate' => $form->rate,
+			
 			];
-			$customer = Suppliers::findOne($id);
+//			print_r(preg_replace('\-?\d+(\.\d{0,})?',$form->rate));
+			$customer = Currency::findOne($id);
 			$customer->attributes = $values;
 			$customer->save();
 			return $this->redirect(['index']);
-			
+
 		}
-		return $this->render('update',['suppliersForm'=>$form,'data'=>$data]);
+		return $this->render('update',['currencyForm'=>$form,'data'=>$data]);
 	}
 }

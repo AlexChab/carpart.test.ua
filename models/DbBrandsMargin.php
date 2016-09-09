@@ -20,4 +20,9 @@ class DbBrandsMargin extends \yii\base\Model
     $data = Yii::$app->db1->createCommand("UPDATE db_brands_margin SET margin = '$margin' WHERE bra_id='$bra_id'")->execute();
     return $data;
   }
+  static function findBrands($bra_id){
+    $data = Yii::$app->db1->createCommand("SELECT * FROM db_brands_margin WHERE bra_id='$bra_id'")->queryOne();
+    return $data;
+
+  }
 }

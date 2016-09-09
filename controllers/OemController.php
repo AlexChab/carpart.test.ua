@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 use SoapClient;
-
+use app\models\Currency;
 
 
 class OemController extends AppController
@@ -38,9 +38,15 @@ class OemController extends AppController
 								</tr>
 							</thead>
 							<tbody>';
+
+
+				$currency = Currency::findOne([
+					'code' => 'EUR',
+				]);;
+
 				foreach ($data['data'] as $value) {
 					if ($value['price'] != null) {
-						$price = ceil($value['price'] * 1.15 * 30.1);
+						$price = ceil($value['price'] * 1.15 * $currency['rate']);
 					} else {
 						$price = 'уточ.';
 					}

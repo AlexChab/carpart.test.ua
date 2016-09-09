@@ -32,10 +32,9 @@ $this->title = 'Продажи - Курсы Валют';
 			['attribute' => 'Действие',
 				'format' => 'html',
 				'value' => function ($data) {
-					return'<a class="btn btn-info btn-xs" href="/admin/currency/view?id=' . $data['id'] .' " role="button"><i class="fa fa-eye" aria-hidden="true"></i></a>
-										<a class="btn btn-warning btn-xs" href="/admin/currency/update?id=' . $data['id'] .' " role="button"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-										<a class="btn btn-danger btn-xs" href="/admin/currency/del?id=' . $data['id'] .' " role="button"><i class="fa fa-trash" aria-hidden="true"></i></a>
-										<a class="btn btn-danger btn-xs" href="/admin/currency/del?id=' . $data['id'] .' " role="button"><i class="fa fa-trash" aria-hidden="true"></i></a>
+					return'	<a class="btn btn-warning btn-xs" href="/admin/currency/update?id=' . $data['id'] .' " role="button"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+										
+										
 										';
 				},
 			],
