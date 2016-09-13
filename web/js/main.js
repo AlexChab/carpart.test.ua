@@ -2,9 +2,17 @@ $(document).ready(function(){
     // pay-button click
     $('.pay-button').on('click',function(e){
         e.preventDefault();
-        var productid = $(this).data('productid');
-        var artid = $(this).data('artid');
-        console.log (artid );
+        var buy ={};
+        buy.source = $(this).data('source');
+        buy.artid = $(this).data('artid');
+        buy.brand = $(this).data('brand');
+        buy.price = $(this).data('price');
+        var basketBuyer = JSON.parse(localStorage.getItem('basketBuyer'));
+        // var basketBuyer = basketBuyer.length;
+        // localStorage.setItem('basketBuyer', JSON.stringify(buy));
+        // var basketBuyer = JSON.parse(localStorage.getItem('basketBuyer'));
+
+        console.log (basketBuyer.length());
     })
     //
     $('#collapseOne').on('hidden.bs.collapse', function () {

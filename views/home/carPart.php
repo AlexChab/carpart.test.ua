@@ -11,6 +11,7 @@ use app\models\Currency;
 	<div class="panel-body">
 <!--		$value['SUP_BRAND']-->
 <!--		$value['ART_COMPLETE_DES_TEXT']-->
+<!--		$findBrands['BRA_BRAND']-->
 		<div class="table-responsive">
 			<table class="table table-condensed letter ">
 				<thead>
@@ -62,10 +63,11 @@ use app\models\Currency;
 						echo '
 						<tr>
 							<td>' . $value['ART_ARTICLE_NR'] . '</td>
-							<td>' . $findBrands['BRA_BRAND'] . '</td>
 							<td>' . $value['SUP_BRAND'] . '</td>
+							<td>' . $value['ART_COMPLETE_DES_TEXT'] . '</td>
+							
 							<td class="buy-hover-td">' . $price . ' </td>
-							<td><button class="btn btn-xs btn-default pay-button" data-artid = "' . $value['LA_ART_ID'] . '"data-productid="' . $value['ART_ARTICLE_NR'] . '" type="button" >&nbsp; <i class="fa fa-shopping-cart text-danger" aria-hidden="true"> </i>&nbsp; </button></td>
+							<td><button class="btn btn-xs btn-default pay-button" data-source = "'.$value['source'].'" data-artid="' . $value['ART_ARTICLE_NR'] . '" data-brand = "'.$value['SUP_BRAND'].'" data-price = "'.$price.'"  type="button" >&nbsp; <i class="fa fa-shopping-cart text-danger" aria-hidden="true"> </i>&nbsp; </button></td>
 						</tr>';
 
 						}
