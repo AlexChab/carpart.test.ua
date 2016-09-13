@@ -1,20 +1,69 @@
+// Чтение из LocalStorage
+function getCartData(){
+    return JSON.parse(localStorage.getItem('cart'));
+}
+// Записываем данные в LocalStorage
+function setCartData(data){
+    localStorage.setItem('cart', JSON.stringify(data));
+    return false;
+}
+// Сброс LocalStorage 
+function clearCartData(){
+    localStorage.removeItem('cart');
+    viewBasketBuyers();
+}
+// Просомтр данных в Локал сторадже для вывода корзины
+function viewBasketBuyers(){
+    var dataPrice = 0;
+    var dataCountPos = 0;
+    var cartData = getCartData()|| {},
+        source ='NoSource',
+        artid =0,
+        partname= 'Noname',
+        brand = 'Noname',
+        price ='уточн.',
+        qty = 0;
+    for(var items in cartData){
+        console.log(cartData[items][4]);
+        if(cartData[items][4] != 'уточн.' ){
+            var dataPrice = dataPrice+cartData[items][4];
+        }
+        dataCountPos ++;
+    }
+    var data = '<a href="#" class="panel-shopcart"> </a><p> Позиций : <b> '+dataCountPos+' </b> на сумму: <b>'+ dataPrice +' грн.</b></p>';
+    $('.panel-body-cart').empty();
+    $('.panel-body-cart').html(data);
+}
+
+$(window).load(function(){
+    viewBasketBuyers();
+
+
+});
 $(document).ready(function(){
     // pay-button click
     $('.pay-button').on('click',function(e){
         e.preventDefault();
-        var buy ={};
-        buy.source = $(this).data('source');
-        buy.artid = $(this).data('artid');
-        buy.brand = $(this).data('brand');
-        buy.price = $(this).data('price');
-        var basketBuyer = JSON.parse(localStorage.getItem('basketBuyer'));
-        // var basketBuyer = basketBuyer.length;
-        // localStorage.setItem('basketBuyer', JSON.stringify(buy));
-        // var basketBuyer = JSON.parse(localStorage.getItem('basketBuyer'));
+        var cartData = getCartData() || {}, // получаем данные корзины или создаём новый объект, если данных еще нет
+            source = $(this).data('source'),
+            artid = $(this).data('artid'),
+            partname = $(this).data('partname'),
+            brand = $(this).data('brand'),
+            price = $(this).data('price'),
+            qty = 1;
+            if(cartData.hasOwnProperty(artid)){ // если такой товар уже в корзине, то добавляем +1 к его количеству
+                cartData[artid][5] += 1;
+               // cartData.qty = cartData.qty+1;
+               // cartData[artid] = [source,artid, partname, brand, price, qty];
 
-        console.log (basketBuyer.length());
+            } else { // если товара в корзине еще нет, то добавляем в объект
+                cartData[artid] = [source,artid, partname, brand, price, qty];
+            }
+            // cartData[artid] = [source,artid, partname, brand, price, qty];
+        setCartData(cartData); // Обновляем данные в LocalStorage
+        viewBasketBuyers();
     })
-    //
+
     $('#collapseOne').on('hidden.bs.collapse', function () {
         $("#my-garage").removeClass("fa-chevron-up");
 	    $("#my-garage").addClass("fa-chevron-down");
@@ -106,7 +155,4 @@ $(document).ready(function(){
     });
 
 });
-$(window).load(function(){
 
-
-});

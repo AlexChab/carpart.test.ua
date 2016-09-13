@@ -67,7 +67,7 @@ use app\models\Currency;
 							<td>' . $value['ART_COMPLETE_DES_TEXT'] . '</td>
 							
 							<td class="buy-hover-td">' . $price . ' </td>
-							<td><button class="btn btn-xs btn-default pay-button" data-source = "'.$value['source'].'" data-artid="' . $value['ART_ARTICLE_NR'] . '" data-brand = "'.$value['SUP_BRAND'].'" data-price = "'.$price.'"  type="button" >&nbsp; <i class="fa fa-shopping-cart text-danger" aria-hidden="true"> </i>&nbsp; </button></td>
+							<td><button class="btn btn-xs btn-default pay-button" data-partname = "'.$value['ART_COMPLETE_DES_TEXT'].'" data-source = "'.$value['source'].'" data-artid="' . $value['ART_ARTICLE_NR'] . '" data-brand = "'.$value['SUP_BRAND'].'" data-price = "'.$price.'"  type="button" >&nbsp; <i class="fa fa-shopping-cart text-danger" aria-hidden="true"> </i>&nbsp; </button></td>
 						</tr>';
 
 						}
