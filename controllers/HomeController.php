@@ -70,48 +70,6 @@ class HomeController extends AppController
 		$request = Yii::$app->request;
 		$typ_id = $request->get('article');
 		$data = Tecdoc::art_lookup($typ_id);
-		echo '<div class="panel panel-default">
-	<div class="panel-heading panel-heading-wrap">
-		Результат поиска по артикулу
-	</div>
-	<div class="panel-body">
-			<div class="table-responsive">
-			<table class="table letter table-condensed">
-				<thead>
-				<tr>
-					<th>Tree</th>
-					<th>Производитель</th>
-					<th>Номер изделия</th>
-					<th>Тип номера</th>
-					<th>Артикульный номер</th>
-					<th>Название изделия</th>
-					<th>Название изделия</th>
-
-				</tr>
-				</thead>
-				<tbody>';
-		foreach ($data as $value){
-			$findPrice = Price::find()->where(['partcode'=>$value['NUMBER']])->one();
-			$price = $findPrice['price'];
-			echo'
-						
-						<tr>
-						<td><a href="#"</a></td>
-						<td>'.$value['BRAND'].'</td>
-						<td>'.$value['NUMBER'].'</td>
-						<td>'.$value['ARL_KIND'].'</td>
-						<td>'.$value['ARL_ART_ID'].'</td>
-						<td>'.$value['ART_COMPLETE_DES_TEXT'].'</td>
-						<td>'.$price.'</td>
-						</tr>';
-			
-		}
-		echo '	</tbody>
-			</table>
-		</div>
-	</div>
-</div>';
-		//return $this->render('parttree',array('data'=>$data));
-		//$this->debug($data);
+		return $this->renderPartial('searchart',array('data'=>$data,'source'=>'tecdoc'));
 	}
 }

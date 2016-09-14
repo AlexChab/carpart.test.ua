@@ -1,4 +1,5 @@
 // Чтение из LocalStorage
+
 function getCartData(){
     return JSON.parse(localStorage.getItem('cart'));
 }
@@ -24,11 +25,10 @@ function viewBasketBuyers(){
         price ='уточн.',
         qty = 0;
     for(var items in cartData){
-        console.log(cartData[items][4]);
         if(cartData[items][4] != 'уточн.' ){
-            var dataPrice = dataPrice+cartData[items][4];
+            var dataPrice = dataPrice+(cartData[items][4]*cartData[items][5]);
         }
-        dataCountPos ++;
+        dataCountPos = dataCountPos+cartData[items][5];
     }
     var data = '<a href="#" class="panel-shopcart"> </a><p> Позиций : <b> '+dataCountPos+' </b> на сумму: <b>'+ dataPrice +' грн.</b></p>';
     $('.panel-body-cart').empty();
@@ -37,12 +37,19 @@ function viewBasketBuyers(){
 
 $(window).load(function(){
     viewBasketBuyers();
-
-
 });
 $(document).ready(function(){
-    // pay-button click
-    $('.pay-button').on('click',function(e){
+    // shop-cart view
+    $('.panel-body-cart').on('click',function(e){
+        e.preventDefault();
+        var cartData = getCartData();
+        for(var items in cartData){
+            console.log(cartData[items][0]+cartData[items][1]+cartData[items][2]+cartData[items][3]+cartData[items][4]+cartData[items][5]);
+        }
+        console.log('test');
+    })
+     // pay-button click
+    $('#contentBody').on('click','.pay-button',function(e){
         e.preventDefault();
         var cartData = getCartData() || {}, // получаем данные корзины или создаём новый объект, если данных еще нет
             source = $(this).data('source'),
@@ -53,6 +60,7 @@ $(document).ready(function(){
             qty = 1;
             if(cartData.hasOwnProperty(artid)){ // если такой товар уже в корзине, то добавляем +1 к его количеству
                 cartData[artid][5] += 1;
+                //console.log(cartData[artid][5]);
                // cartData.qty = cartData.qty+1;
                // cartData[artid] = [source,artid, partname, brand, price, qty];
 
@@ -62,7 +70,7 @@ $(document).ready(function(){
             // cartData[artid] = [source,artid, partname, brand, price, qty];
         setCartData(cartData); // Обновляем данные в LocalStorage
         viewBasketBuyers();
-    })
+    });
 
     $('#collapseOne').on('hidden.bs.collapse', function () {
         $("#my-garage").removeClass("fa-chevron-up");
@@ -71,7 +79,7 @@ $(document).ready(function(){
 	$('#collapseOne').on('shown.bs.collapse', function () {
 		$("#my-garage").removeClass("fa-chevron-down");
 	    $("#my-garage").addClass("fa-chevron-up");
-	})
+	});
 
 	// delete my-car garage
 	$('.del-my-car').on('click',function(){
@@ -112,7 +120,7 @@ $(document).ready(function(){
             success: function(data)
             {
                 $("#contentBody").empty();
-                $("#contentBody").html(data);
+                $("#contentBody").append(data);
 
             },
             error: function()

@@ -21,45 +21,25 @@ use app\models\Currency;
 					<th>Производитель</th>
 					<th>Наименование</th>
 					<th>Цена,грн</th>
-					<th></th>
+					<th>Купить</th>
 
 				</tr>
 				</thead>
 				<tbody>
 				<?php
-
 				foreach ($data as $value) {
 					if ($value['ART_STATUS_TEXT'] == 'Нормальный') {
 						if (DbBrands::findOne(['BRA_BRAND' => $value['SUP_BRAND']])!=null){
-							$findPrice = Price::findOne(['partcode' => trim(preg_replace('~\s+~s','',$value['ART_ARTICLE_NR']))]);
-
+							$findPrice = Price::findOne(['partcode' => trim(preg_replace('~\s+~s','',$value['ART_ARTICLE_NR'])),'partbrand' => trim($value['SUP_BRAND'])]);
 							$findBrands = DbBrands::findOne(['BRA_BRAND' => $findPrice['partbrand']]);
 							if($findPrice['price']!=null){
 								$marginBrand = DbBrandsMargin::findBrands($findBrands['BRA_ID']);
-
-								if ($findPrice['typcur'] == 'EUR'){
-									$price = ($findPrice['price']*'1'.$marginBrand['margin']);
-									$currencyExch = Currency::findOne(['code'=> 'EUR']);
-									$price = ceil(($findPrice['price']*'1'.$marginBrand['margin'])*$currencyExch['rate']);
-								}
-								elseif ($findPrice['typcur'] == 'USD'){
-									$currencyExch = Currency::findOne(['code'=> 'USD']);
-									$price = ceil(($findPrice['price']*'1'.$marginBrand['margin'])*$currencyExch['rate']);
-								}
-								elseif ($findPrice['typcur'] == 'UAH'){
-									$currencyExch = Currency::findOne(['code'=> 'UAH']);
-									$price = ceil(($findPrice['price']*'1'.$marginBrand['margin'])*$currencyExch['rate']);
-								}
-
-								else{
-									$price = ($findPrice['price']*'1'.$marginBrand['margin']);
-								}
-
+								$currencyExch = Currency::findOne(['code'=> $findPrice['typcur']]);
+								$price = ceil($findPrice['price']*(($marginBrand['margin']+100)/100)*$currencyExch['rate']);
 							}
 							else{
 								$price = 'уточн.';
 							}
-
 						echo '
 						<tr>
 							<td>' . $value['ART_ARTICLE_NR'] . '</td>
