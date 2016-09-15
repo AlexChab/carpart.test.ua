@@ -60,6 +60,8 @@ $(document).ready(function(){
             qty = 1;
             if(cartData.hasOwnProperty(artid)){ // если такой товар уже в корзине, то добавляем +1 к его количеству
                 cartData[artid][5] += 1;
+                console.log(cartData[artid][3]);
+                console.log(cartData[brand]);
                 //console.log(cartData[artid][5]);
                // cartData.qty = cartData.qty+1;
                // cartData[artid] = [source,artid, partname, brand, price, qty];
