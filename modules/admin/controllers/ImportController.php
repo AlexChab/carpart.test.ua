@@ -52,7 +52,7 @@ class ImportController extends DefaultController
 		}
 			// построчное считывание и анализ строк из файла
 		while ( ($data_f = fgetcsv($handle_f, 1000, ";"))!== FALSE) {
-				$implodeData = "('".$suppliers."','". preg_replace ('![^\w\d]*!','',$data_f[0]) ."','".$data_f[2]."','".$data_f[3]."','".$data_f[4]."','".$data_f[5]."')";
+				$implodeData = "('".$suppliers."','". preg_replace ('![^\w\d]*!','',$data_f[0]) ."','".strtoupper($data_f[2])."','".$data_f[3]."','".$data_f[4]."','".$data_f[5]."')";
 				$dataImport = $dataImport.$implodeData.',';
 //			$model->partbrand= trim(preg_replace('/(^"|"$)/', '', $data_f[2]));
 				//if(!strstr($i/100,'.')){
