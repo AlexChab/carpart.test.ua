@@ -12,12 +12,14 @@ use app\models\Price;
 use Yii;
 use app\models\Priceimport;
 use app\models\UploadForm;
+use app\models\form\DeletepriceForm;
 use yii\web\UploadedFile;
 
 class ImportController extends DefaultController
 {
 	public function actionIndex(){
 		$model = new UploadForm();
+		$delsuppliers = new DeletepriceForm();
 		if($model->load(Yii::$app->request->post()) && $model->validate()){
 			$file = $model->dataFile = UploadedFile::getInstance($model, 'dataFile');
 			$file->saveAs('upload/pricelist.csv');
@@ -28,7 +30,7 @@ class ImportController extends DefaultController
 		else{
 			$suppliers ='Загрузка прайсов';
 		}
-		return $this->render('index', ['model' => $model,'data' => $suppliers]);
+		return $this->render('index', ['model' => $model,'delsuppliers'=>$delsuppliers,'data' => $suppliers]);
 	}
 
 	public function actionPriceimport($suppliers){
@@ -77,6 +79,10 @@ class ImportController extends DefaultController
 			return $this->redirect('index');
 		}
 		return $this->redirect('index');
+	}
+	public function actionDeleteprice(){
+		$suppliers = '16';
+		Price::deleteAll(['suppliers_id' => $suppliers]);
 	}
 	public function actionImportfile(){
 		$suppliers = "16";
