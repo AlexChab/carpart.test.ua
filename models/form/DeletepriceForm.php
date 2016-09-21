@@ -20,5 +20,11 @@ class DeletepriceForm extends Model
 			[['suppliers',],'required'],
 		];
 	}
+	public function attributeLabels()
+	{
+		return [
+			'suppliers' =>'Выбор поставщика',
+		];
+	}
 
 }

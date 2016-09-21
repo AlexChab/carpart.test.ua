@@ -94,8 +94,18 @@ AdminAsset::register($this);
 							<li>
 								<a href="/admin/currency">Курс валют</a>
 							</li>
+
 							<li>
-								<a href="/admin/import">Импорт прайсов</a>
+									<a href="#">Прайсы<span class="fa arrow"></span></a>
+									<ul class="nav nav-second-level">
+										<li>
+											<a href="/admin/import">Импорт прайсов</a>
+										</li>
+										<li>
+											<a href="/admin/import/deleteprice">Удаление прайсов</a>
+										</li>
+
+									</ul>
 							</li>
 						</ul>
 					</li>

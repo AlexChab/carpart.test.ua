@@ -15,6 +15,7 @@ use yii\helpers\ArrayHelper;
 <?= $form->field($model, 'dataFile',  ['inputOptions'=>['class'=>'']])->fileInput()->hint('') ?>
 
 <?= Html::submitButton('Загрузить в базу',['class' => 'btn btn-success'])?>
+<?php ActiveForm::end();?>
 <? if($error!=null){
 	echo 'Файл загружен';
 }?>
