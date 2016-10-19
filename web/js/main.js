@@ -43,10 +43,52 @@ $(document).ready(function(){
     $('.panel-body-cart').on('click',function(e){
         e.preventDefault();
         var cartData = getCartData();
+        var contentData = '<h4></h4>';
+        var contentDataHeader ='<table class="table table-striped"><thead><tr><th>#</th><th>Код</th><th>Брэнд</th><th>Название</th><th>кол-во</th><th>Цена,шт.</th></tr></thead><tbody>';
+        var numberPos = 0;
+        var shopCartTotal = 0;
         for(var items in cartData){
-            console.log(cartData[items][0]+cartData[items][1]+cartData[items][2]+cartData[items][3]+cartData[items][4]+cartData[items][5]);
+            if (cartData[items][4] == 'уточн.'){
+                var formPrice = 'уточн.';
+            }
+            else{
+                var formPrice = '<b>'+cartData[items][4]+'</b> грн.';
+                var shopCartTotal = shopCartTotal+(cartData[items][4]*cartData[items][5]);
+            }
+            //var contentData = contentData + (cartData[items][0]+cartData[items][1]+cartData[items][2]+cartData[items][3]+cartData[items][4]+cartData[items][5])+'<br>';
+            var contentData = contentData + '<tr><td>'+(numberPos = numberPos+1)+'</td><td>'+cartData[items][1]+'</td><td>'+cartData[items][3]+'</td><td>'+cartData[items][2]+'</td><td>'+cartData[items][5]+'</td><td><b>'+formPrice+ '</b></td></tr>' ;
         }
-        console.log('test');
+        var header = '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><div><h4>Просмотр корзины заказа</h4>  </div>';
+        var footer = '<button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Продолжить покупки</button> <button type="button" class="btn btn-success btn-sm" >Оформить заказ</button> <button id="clearShopCart" type="button" class="btn btn-danger btn-sm">Очистить корзину</button>';
+        var contentDataFooter = '</tbody></table> <h3> Итоговая сумма заказа <b> '+shopCartTotal+'</b> грн. </h3> <p class="small"> * Позиция <b>уточн.</b> требует уточнения цены у менеджера. Сумма заказа может быть изменена после уточнения. </p>';
+        var contentDataBody = contentDataHeader+contentData+contentDataFooter;
+        $('#largeModal .modal-header').empty();
+        $('#largeModal .modal-header').append(header);
+
+        $('#largeModal .modal-body').empty();
+        $('#largeModal .modal-body').append(contentDataBody);
+
+        $('#largeModal .modal-footer').empty();
+        $('#largeModal .modal-footer').append(footer);
+        $('#largeModal').modal('toggle');
+        
+
+    })
+    // clear shop cart modal window
+    $('#largeModal').on('click','#clearShopCart',function(e){
+        e.preventDefault();
+        $('#largeModal').modal('hide');
+        clearCartData();
+        var header = ' <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><div>Сообщение</div>';
+        var content = '<h4 class="center"> Ваша корзина пуста </h4>';
+        var footer = '<button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Продолжить покупки</button>';
+        $('#smallModal .modal-header').empty();
+        $('#smallModal .modal-header').append(header);
+        $('#smallModal .modal-body').empty();
+        $('#smallModal .modal-body').append(content);
+        $('#smallModal .modal-footer').empty();
+        $('#smallModal .modal-footer').append(footer);
+        $('#smallModal').modal('toggle');
     })
      // pay-button click
     $('#contentBody').on('click','.pay-button',function(e){
