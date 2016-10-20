@@ -59,7 +59,7 @@ $(document).ready(function(){
             var contentData = contentData + '<tr><td>'+(numberPos = numberPos+1)+'</td><td>'+cartData[items][1]+'</td><td>'+cartData[items][3]+'</td><td>'+cartData[items][2]+'</td><td>'+cartData[items][5]+'</td><td><b>'+formPrice+ '</b></td></tr>' ;
         }
         var header = '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><div><h4>Просмотр корзины заказа</h4>  </div>';
-        var footer = '<button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Продолжить покупки</button> <button type="button" class="btn btn-success btn-sm" >Оформить заказ</button> <button id="clearShopCart" type="button" class="btn btn-danger btn-sm">Очистить корзину</button>';
+        var footer = '<button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Продолжить покупки</button> <button type="button" id="createOrderByer" class="btn btn-success btn-sm" >Оформить заказ</button> <button id="clearShopCart" type="button" class="btn btn-danger btn-sm">Очистить корзину</button>';
         var contentDataFooter = '</tbody></table> <h3> Итоговая сумма заказа <b> '+shopCartTotal+'</b> грн. </h3> <p class="small"> * Позиция <b>уточн.</b> требует уточнения цены у менеджера. Сумма заказа может быть изменена после уточнения. </p>';
         var contentDataBody = contentDataHeader+contentData+contentDataFooter;
         $('#largeModal .modal-header').empty();
@@ -72,6 +72,24 @@ $(document).ready(function(){
         $('#largeModal .modal-footer').append(footer);
         $('#largeModal').modal('toggle');
         
+
+    })
+    // create order byer
+    $('#largeModal').on('click','#createOrderByer',function(e){
+        e.preventDefault();
+        $('#largeModal').modal('hide');
+        var cartData = getCartData();
+        var arr = $.makeArray(cartData);
+        console.log(arr);
+        console.log(cartData);
+        $.ajax({
+            url:'/cart/createorder'
+            , type:'POST'
+            , data:'jsonData='+JSON.stringify(arr)
+            , success: function(res) {
+                alert(res);
+            }
+        });
 
     })
     // clear shop cart modal window

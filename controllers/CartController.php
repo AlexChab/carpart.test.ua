@@ -19,4 +19,11 @@ class CartController extends AppController
 		$idProduct = $request->get('id');
 		$this->debug($idProduct);
 	}
+	public function actionCreateorder(){
+
+		$request = Yii::$app->request;
+		$this->debug($request->post('jsonData'));
+				
+
+	}
 }
