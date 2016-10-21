@@ -77,20 +77,17 @@ $(document).ready(function(){
     // create order byer
     $('#largeModal').on('click','#createOrderByer',function(e){
         e.preventDefault();
+        var content = '<p> Поздравляем! Вы только что совершили заказ в инетернет магазине. Менеджер свяжется с вами в ближайшее время. Копия заказа отпралена на ваш почтовый ящик. Контакты интернет магазина </p>';
         $('#largeModal').modal('hide');
         var cartData = getCartData();
-        var arr = $.makeArray(cartData);
-        console.log(arr);
-        console.log(cartData);
         $.ajax({
             url:'/cart/createorder'
             , type:'POST'
-            , data:'jsonData='+JSON.stringify(arr)
+            , data:'jsonData='+JSON.stringify(cartData)
             , success: function(res) {
                 alert(res);
             }
         });
-
     })
     // clear shop cart modal window
     $('#largeModal').on('click','#clearShopCart',function(e){
