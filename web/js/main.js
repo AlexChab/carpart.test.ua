@@ -35,9 +35,11 @@ function viewBasketBuyers(){
     $('.panel-body-cart').html(data);
 }
 
+
 $(window).load(function(){
     viewBasketBuyers();
 });
+
 $(document).ready(function(){
     // shop-cart view
     $('.panel-body-cart').on('click',function(e){
@@ -64,13 +66,11 @@ $(document).ready(function(){
         var contentDataBody = contentDataHeader+contentData+contentDataFooter;
         $('#largeModal .modal-header').empty();
         $('#largeModal .modal-header').append(header);
-
         $('#largeModal .modal-body').empty();
         $('#largeModal .modal-body').append(contentDataBody);
-
         $('#largeModal .modal-footer').empty();
         $('#largeModal .modal-footer').append(footer);
-        $('#largeModal').modal('toggle');
+        $('#largeModal').modal('show');
         
 
     })
@@ -78,14 +78,54 @@ $(document).ready(function(){
     $('#largeModal').on('click','#createOrderByer',function(e){
         e.preventDefault();
         var content = '<p> Поздравляем! Вы только что совершили заказ в инетернет магазине. Менеджер свяжется с вами в ближайшее время. Копия заказа отпралена на ваш почтовый ящик. Контакты интернет магазина </p>';
-        $('#largeModal').modal('hide');
+        //$('#largeModal').modal('hide');
         var cartData = getCartData();
+        var header = '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><div><h4> Оформление заказа</h4>  </div>';
+        var footer = '<button type="button" id="successBuy" class="btn btn-warning btn-sm" >Оформить заказ</button> ';
         $.ajax({
-            url:'/cart/createorder'
-            , type:'POST'
-            , data:'jsonData='+JSON.stringify(cartData)
-            , success: function(res) {
-                alert(res);
+            url:'/cart/createorder',
+            type:'POST',
+            data:'jsonData='+JSON.stringify(cartData),
+            success: function(data) {
+                $('#largeModal .modal-header').empty();
+                $('#largeModal .modal-header').append(header);
+
+                $('#largeModal .modal-body').empty();
+                $('#largeModal .modal-body').append(data);
+
+                $('#largeModal .modal-footer').empty();
+                $('#largeModal .modal-footer').append(footer);
+                //$('#largeModal').modal('hide');
+
+            }
+        });
+    })
+    // shop buyer
+    $('#largeModal').on('click','#successBuy',function(e) {
+        e.preventDefault();
+        //$('#largeModal').modal('hide');
+        var cartData = getCartData();
+        var formNameBuyer = $('#inputNameBuyer').val();
+        var formEmailBuyer = $('#inputEmailBuyer').val();
+        var formPhoneBuyer = $('#inputPhoneBuyer').val();
+        var data = 'jsonData='+JSON.stringify(cartData)+'&formNameBuyer='+formNameBuyer+'&formEmailBuyer='+formEmailBuyer+'&formPhoneBuyer='+formPhoneBuyer;
+        console.log(data);
+        $.ajax({
+            url:'/cart/successbuy',
+            type:'POST',
+            data: data,
+            success: function(data) {
+
+                $('#largeModal .modal-header').empty();
+                //$('#largeModal .modal-header').append(header);
+
+                $('#largeModal .modal-body').empty();
+                $('#largeModal .modal-body').append(data);
+
+                $('#largeModal .modal-footer').empty();
+                // $('#largeModal .modal-footer').append(footer);
+                $('#largeModal').modal('hide');
+
             }
         });
     })
@@ -103,7 +143,7 @@ $(document).ready(function(){
         $('#smallModal .modal-body').append(content);
         $('#smallModal .modal-footer').empty();
         $('#smallModal .modal-footer').append(footer);
-        $('#smallModal').modal('toggle');
+        $('#smallModal').modal('show');
     })
      // pay-button click
     $('#contentBody').on('click','.pay-button',function(e){

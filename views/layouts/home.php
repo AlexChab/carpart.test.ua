@@ -31,8 +31,8 @@ AppAsset::register($this);
 					</div>
 					<div class="col-md-6 col-sm-6 col-xs-6">
 						<ul class="pull-left" >
-							<li class="h3"><i class="fa fa-volume-control-phone text-danger"></i> (048) <span class="text-primary">706-93-40</span> </li>
-							<li class="h3"><i class="fa fa-volume-control-phone text-danger"></i> (067) <span class="text-primary">502-20-32 </span> </li>
+							<li class="h3"><i class="fa fa-volume-control-phone text-danger"></i> (048) <span class="text-primary">702-93-40</span> </li>
+							<li class="h3"><i class="fa fa-volume-control-phone text-danger"></i> (067) <span class="text-primary">009-00-11 </span> </li>
 						</ul>
 					</div>
 					<div class="col-md-6 col-sm-6 col-xs-6">
@@ -167,7 +167,7 @@ AppAsset::register($this);
 				<strong>Магазин - склад № 200</strong><br>
 				65100 г.Одесса , авторынок "Успех"<br>
 				пр-т. маршала Жукова 2А<br>
-				<abbr title="Phone">тел:</abbr> +38(048)706-93-40 +38(067)502-20-32
+				<abbr title="Phone">тел:</abbr> +38(048)702-93-40 +38(067)009-00-11
 			</address>
 
 			<address>
