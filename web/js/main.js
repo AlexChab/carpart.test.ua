@@ -212,7 +212,7 @@ $(document).ready(function(){
 	// search panel on header
     $("#searchArt").on('click',function () {
         error_message = "Error Article request, please contact admin";
-        var inputSearchArt = $("#inputSearchArt").val().replace(/\s+/g, '');
+        var inputSearchArt = $("#inputSearchArt").val().replace(/[^a-zA-Z0-9]/g,'');
         $.ajax({
             type: 'GET',
             url: '/home/searchart?article='+inputSearchArt,
