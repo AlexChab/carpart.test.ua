@@ -11,8 +11,10 @@ class OemController extends AppController
 	{
 		if ($oem != null) {
 			$oem = trim($oem);
-			$client = new SoapClient("http://www.test.aurora-parts.com.ua/api/api.wsdl");
-			$answer = $client->login("Pit-stop_2001@mail.ru", "7069340", "12345");
+//			$client = new SoapClient("http://www.test.aurora-parts.com.ua/api/api.wsdl");
+//			$answer = $client->login("Pit-stop_2001@mail.ru", "7069340", "12345");
+			$client = new SoapClient("http://www.aurora-parts.com.ua/api/api.wsdl");
+			$answer = $client->login("Pit-stop_2001@mail.ru", "7069340", "nflOiS|#urv9o");
 			$session = (json_decode($answer, TRUE));
 			$answer = $client->findCode($session['session_id'], $oem);
 			$data = json_decode($answer, TRUE);
@@ -46,7 +48,7 @@ class OemController extends AppController
 
 				foreach ($data['data'] as $value) {
 					if ($value['price'] != null) {
-						$price = ceil($value['price'] * 1.15 * $currency['rate']);
+						$price = ceil($value['price'] * 1.20 * $currency['rate']);
 					} else {
 						$price = 'уточ.';
 					}
