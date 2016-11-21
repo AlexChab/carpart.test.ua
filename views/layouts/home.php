@@ -27,12 +27,12 @@ AppAsset::register($this);
 			<div class="head-phone">
 				<div class="row">
 					<div class="col-md-12">
-						<p class="h4">Подбор и заказ запчастей с 9-00 до 20-00 пн-пт</p>
+						<p class="h4">Подбор и заказ запчастей с 9-00 до 18-00 пн-пт</p>
 					</div>
 					<div class="col-md-6 col-sm-6 col-xs-6">
 						<ul class="pull-left" >
 							<li class="h3"><i class="fa fa-volume-control-phone text-danger"></i> (048) <span class="text-primary">702-93-40</span> </li>
-							<li class="h3"><i class="fa fa-volume-control-phone text-danger"></i> (067) <span class="text-primary">009-00-11 </span> </li>
+							<li class="h3"><i class="fa fa-volume-control-phone text-danger"></i> (067) <span class="text-primary">009-00-11 </span>  <span style="color:slateblue !important; text-transform: none !important; "> Viber</span></li>
 						</ul>
 					</div>
 					<div class="col-md-6 col-sm-6 col-xs-6">
@@ -165,15 +165,11 @@ AppAsset::register($this);
 		<div class="col-md-4 col-sm-4 col-xs-6">
 			<address>
 				<strong>Магазин - склад № 200</strong><br>
-				65100 г.Одесса , авторынок "Успех"<br>
+				65101 г.Одесса , авторынок "Успех"<br>
 				пр-т. маршала Жукова 2А<br>
 				<abbr title="Phone">тел:</abbr> +38(048)702-93-40 +38(067)009-00-11
 			</address>
 
-			<address>
-				<strong>Почта</strong><br>
-				<a href="mailto:#">pit-stop_2001@mail.ru</a>
-			</address>
 		</div>
 		<div class="col-md-4 col-sm-4 col-xs-6">
 			<ul>

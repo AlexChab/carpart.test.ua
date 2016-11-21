@@ -35,6 +35,40 @@ function viewBasketBuyers(){
     $('.panel-body-cart').html(data);
 }
 
+// delete cart position
+function delRowCartData(artid){
+    var footer = '</tbody></table> <p class="small"> * Позиция <b>уточн.</b> требует уточнения цены у менеджера. Сумма заказа может быть изменена после уточнения. </p>';
+    var cartData = getCartData();
+    delete cartData[artid];
+    setCartData(cartData);
+    viewBasketBuyers();
+    var contentDataBody = shopCartView();
+    $('#largeModal .modal-body').empty();
+    $('#largeModal .modal-body').append(contentDataBody);
+
+}
+
+// shop cart view
+function shopCartView(){
+    var cartData = getCartData();
+    var contentData = '<h4></h4>';
+    var contentDataHeader ='<table class="table table-striped"><thead><tr><th>#</th><th>Код</th><th>Брэнд</th><th>Название</th><th>кол-во</th><th>Цена,шт.</th><th></th></tr></thead><tbody>';
+    var numberPos = 0;
+    var shopCartTotal = 0;
+    for(var items in cartData){
+        if (cartData[items][4] == 'уточн.'){
+            var formPrice = 'уточн.';
+        }
+        else{
+            var formPrice = '<b>'+cartData[items][4]+'</b> грн.';
+            var shopCartTotal = shopCartTotal+(cartData[items][4]*cartData[items][5]);
+        }
+        var contentData = contentData + '<tr><td>'+(numberPos = numberPos+1)+'</td><td>'+cartData[items][1]+'</td><td>'+cartData[items][3]+'</td><td>'+cartData[items][2]+'</td><td>'+cartData[items][5]+'</td><td><b>'+formPrice+ '</b></td><td class="text-danger rowDel" data-artid="'+cartData[items][1]+'"><i class="fa fa-trash del-row-button" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Удалить позицию"></i></td></tr>' ;
+    }
+    var contentDataFooter = '</tbody></table> <h3> Итоговая сумма заказа <b> '+shopCartTotal+'</b> грн. </h3> <p class="small"> * Позиция <b>уточн.</b> требует уточнения цены у менеджера. Сумма заказа может быть изменена после уточнения. </p>';
+    var contentDataBody = contentDataHeader+contentData+contentDataFooter;
+    return contentDataBody;
+};
 
 $(window).load(function(){
     viewBasketBuyers();
@@ -44,26 +78,9 @@ $(document).ready(function(){
     // shop-cart view
     $('.panel-body-cart').on('click',function(e){
         e.preventDefault();
-        var cartData = getCartData();
-        var contentData = '<h4></h4>';
-        var contentDataHeader ='<table class="table table-striped"><thead><tr><th>#</th><th>Код</th><th>Брэнд</th><th>Название</th><th>кол-во</th><th>Цена,шт.</th></tr></thead><tbody>';
-        var numberPos = 0;
-        var shopCartTotal = 0;
-        for(var items in cartData){
-            if (cartData[items][4] == 'уточн.'){
-                var formPrice = 'уточн.';
-            }
-            else{
-                var formPrice = '<b>'+cartData[items][4]+'</b> грн.';
-                var shopCartTotal = shopCartTotal+(cartData[items][4]*cartData[items][5]);
-            }
-            //var contentData = contentData + (cartData[items][0]+cartData[items][1]+cartData[items][2]+cartData[items][3]+cartData[items][4]+cartData[items][5])+'<br>';
-            var contentData = contentData + '<tr><td>'+(numberPos = numberPos+1)+'</td><td>'+cartData[items][1]+'</td><td>'+cartData[items][3]+'</td><td>'+cartData[items][2]+'</td><td>'+cartData[items][5]+'</td><td><b>'+formPrice+ '</b></td></tr>' ;
-        }
         var header = '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><div><h4>Просмотр корзины заказа</h4>  </div>';
         var footer = '<button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Продолжить покупки</button> <button type="button" id="createOrderByer" class="btn btn-success btn-sm" >Оформить заказ</button> <button id="clearShopCart" type="button" class="btn btn-danger btn-sm">Очистить корзину</button>';
-        var contentDataFooter = '</tbody></table> <h3> Итоговая сумма заказа <b> '+shopCartTotal+'</b> грн. </h3> <p class="small"> * Позиция <b>уточн.</b> требует уточнения цены у менеджера. Сумма заказа может быть изменена после уточнения. </p>';
-        var contentDataBody = contentDataHeader+contentData+contentDataFooter;
+        var contentDataBody = shopCartView();
         $('#largeModal .modal-header').empty();
         $('#largeModal .modal-header').append(header);
         $('#largeModal .modal-body').empty();
@@ -71,14 +88,16 @@ $(document).ready(function(){
         $('#largeModal .modal-footer').empty();
         $('#largeModal .modal-footer').append(footer);
         $('#largeModal').modal('show');
-        
-
+    })
+    // delete row from shop cart
+    $('#largeModal').on('click','.rowDel',function(){
+        delRowCartData($(this).attr("data-artid"));
+        $(this).closest('tr').remove();
     })
     // create order byer
     $('#largeModal').on('click','#createOrderByer',function(e){
         e.preventDefault();
         var content = '<p> Поздравляем! Вы только что совершили заказ в инетернет магазине. Менеджер свяжется с вами в ближайшее время. Копия заказа отпралена на ваш почтовый ящик. Контакты интернет магазина </p>';
-        //$('#largeModal').modal('hide');
         var cartData = getCartData();
         var header = '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><div><h4> Оформление заказа</h4>  </div>';
         var footer = '<button type="button" id="successBuy" class="btn btn-warning btn-sm" >Оформить заказ</button> ';
@@ -89,14 +108,10 @@ $(document).ready(function(){
             success: function(data) {
                 $('#largeModal .modal-header').empty();
                 $('#largeModal .modal-header').append(header);
-
                 $('#largeModal .modal-body').empty();
                 $('#largeModal .modal-body').append(data);
-
                 $('#largeModal .modal-footer').empty();
                 $('#largeModal .modal-footer').append(footer);
-                //$('#largeModal').modal('hide');
-
             }
         });
     })
@@ -145,9 +160,24 @@ $(document).ready(function(){
         $('#smallModal .modal-footer').append(footer);
         $('#smallModal').modal('show');
     })
+
      // pay-button click
     $('#contentBody').on('click','.pay-button',function(e){
         e.preventDefault();
+        var contentDataBody = '<form class="form-inline" role="form"> <div class="form-group"> <label class="sr-only" for="qty">Кол-во</label> <input type="text" class="form-control" id="qty" placeholder="1"> </div> </form>';
+        var header = '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><div><h4>Просмотр позиции товара</h4>  </div>';
+        var footer = '<button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">В корзину</button> <button type="button" class="btn btn-danger btn-sm">Отмена</button>';
+        $('#largeModal .modal-header').empty();
+        $('#largeModal .modal-header').append(header);
+        $('#largeModal .modal-body').empty();
+        $('#largeModal .modal-body').append(contentDataBody);
+        $('#largeModal .modal-footer').empty();
+        $('#largeModal .modal-footer').append(footer);
+        $('#largeModal').modal('show');
+
+
+
+
         var cartData = getCartData() || {}, // получаем данные корзины или создаём новый объект, если данных еще нет
             source = $(this).data('source'),
             artid = $(this).data('artid'),
@@ -157,8 +187,6 @@ $(document).ready(function(){
             qty = 1;
             if(cartData.hasOwnProperty(artid)){ // если такой товар уже в корзине, то добавляем +1 к его количеству
                 cartData[artid][5] += 1;
-                console.log(cartData[artid][3]);
-                console.log(cartData[brand]);
                 //console.log(cartData[artid][5]);
                // cartData.qty = cartData.qty+1;
                // cartData[artid] = [source,artid, partname, brand, price, qty];
@@ -167,8 +195,8 @@ $(document).ready(function(){
                 cartData[artid] = [source,artid, partname, brand, price, qty];
             }
             // cartData[artid] = [source,artid, partname, brand, price, qty];
-        setCartData(cartData); // Обновляем данные в LocalStorage
-        viewBasketBuyers();
+        // setCartData(cartData); // Обновляем данные в LocalStorage
+        // viewBasketBuyers();
     });
 
     $('#collapseOne').on('hidden.bs.collapse', function () {
@@ -211,6 +239,15 @@ $(document).ready(function(){
 
 	// search panel on header
     $("#searchArt").on('click',function () {
+        searchArt();
+    })
+    $("#inputSearchArt").keypress(function(e){
+       if(e.keyCode==13){
+
+            searchArt();
+       }
+    });
+    function searchArt(){
         error_message = "Error Article request, please contact admin";
         var inputSearchArt = $("#inputSearchArt").val().replace(/[^a-zA-Z0-9]/g,'');
         $.ajax({
@@ -228,8 +265,18 @@ $(document).ready(function(){
             }
 
         });
-    })
+    }
+
     $("#searchOem").on('click',function () {
+        searchOEM();
+    })
+    $("#inputSearchOem").keypress(function(e){
+        if(e.keyCode==13){
+            searchOEM();
+        }
+    });
+
+    function searchOEM () {
         error_message = "Error ajax Oem request,please contact admin";
         var inputSearchOem = $("#inputSearchOem").val().replace(/\s+/g, '');
         $.ajax({
@@ -246,7 +293,7 @@ $(document).ready(function(){
                 alert(error_message);
             }
         });
-    })
+    }
 
 
     // -- Hover на изменение вида 

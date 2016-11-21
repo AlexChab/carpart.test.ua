@@ -67,7 +67,7 @@ class OemController extends AppController
 					<td>' . $presence . '</td>
 					<td>' . $value['delivery_time'] . '</td>
 					<td>' . $price . '</td>
-					<td><button class="btn btn-xs btn-default pay-button" data-artoem = "' . $value['partcode'] . '"data-productid="" type="button" >&nbsp; <i class="fa fa-shopping-cart text-danger" aria-hidden="true"> </i>&nbsp; </button></td>
+					<td><button class="btn btn-xs btn-default pay-button" data-partname ="' .  $value['partcode_real_name'] .'" data-brand = "'.$value['partcode_supplier'].'" data-artid="'.$value['partcode'].'" data-price="'.$price.'" type="button" >&nbsp; <i class="fa fa-shopping-cart text-danger" aria-hidden="true"> </i>&nbsp; </button></td>
 				</tr>';
 				}
 				echo '	

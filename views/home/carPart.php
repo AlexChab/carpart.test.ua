@@ -30,7 +30,8 @@ use app\models\Currency;
 				foreach ($data as $value) {
 					if ($value['ART_STATUS_TEXT'] == 'Нормальный') {
 						if (DbBrands::findOne(['BRA_BRAND' => $value['SUP_BRAND']])!=null){
-							$findPrice = Price::findOne(['partcode' => trim(preg_replace('~\s+~s','',$value['ART_ARTICLE_NR'])),'partbrand' => trim($value['SUP_BRAND'])]);
+							//$findPrice = Price::findOne(['partcode' => trim(preg_replace('~\s+~s','',$value['ART_ARTICLE_NR'])),'partbrand' => trim($value['SUP_BRAND'])]);
+							$findPrice = Price::findOne(['partcode' => trim(preg_replace('/[^a-zA-Z0-9]/','',$value['ART_ARTICLE_NR'])),'partbrand' => trim($value['SUP_BRAND'])]);
 							$findBrands = DbBrands::findOne(['BRA_BRAND' => $findPrice['partbrand']]);
 							if($findPrice['price']!=null){
 								$marginBrand = DbBrandsMargin::findBrands($findBrands['BRA_ID']);

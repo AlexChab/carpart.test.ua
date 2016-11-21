@@ -203,5 +203,8 @@ tr .buy-hover-td :hover{
     font-weight: bold;
     
 }
+.del-row-button{
+    cursor: pointer;
+}
 
 

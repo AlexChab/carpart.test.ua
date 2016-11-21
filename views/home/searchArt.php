@@ -49,7 +49,7 @@ use app\models\Currency;
 						<td>' . $value['ARL_KIND'] . '</td>
 						<td>' . $value['ART_COMPLETE_DES_TEXT'] . '</td>
 						<td>'.$price.'</td>
-						<td><button class="btn btn-xs btn-default pay-button" data-partname = "'.$value['ART_COMPLETE_DES_TEXT'].'" data-source = "'.$source.'" data-artid="' . $value['NUMBER'] . '" data-brand = "'.$value['BRAND'].'" data-price = "'.$price.'"  type="button" >&nbsp; <i class="fa fa-shopping-cart text-danger" aria-hidden="true"> </i>&nbsp; </button></td>
+						<td><button class="btn btn-xs btn-default pay-button" data-partname = "'.$value['ART_COMPLETE_DES_TEXT'].'" data-source = "'.$source.'" data-artid="'.$value['NUMBER'].'" data-brand = "'.$value['BRAND'].'" data-price = "'.$price.'"  type="button" >&nbsp; <i class="fa fa-shopping-cart text-danger" aria-hidden="true"> </i>&nbsp; </button></td>
 						</tr>';
 
 					}
