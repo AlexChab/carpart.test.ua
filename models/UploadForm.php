@@ -10,6 +10,7 @@ namespace app\models;
 
 
 use yii\base\Model;
+use yii\web\UploadedFile;
 
 class UploadForm extends Model
 {
@@ -30,4 +31,5 @@ class UploadForm extends Model
 			'suppliers' =>'Выбор поставщика',
 		];
 	}
+
 }

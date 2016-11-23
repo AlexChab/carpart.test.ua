@@ -164,7 +164,7 @@ $(document).ready(function(){
      // pay-button click
     $('#contentBody').on('click','.pay-button',function(e){
         e.preventDefault();
-        var contentDataBody = '<form class="form-inline" role="form"> <div class="form-group"> <label class="sr-only" for="qty">Кол-во</label> <input type="text" class="form-control" id="qty" placeholder="1"> </div> </form>';
+        var contentDataBody = '<form class="form-inline" role="form"><div class="form-group"> <input type="text" class="form-control" id="" placeholder="'+$(this).data('artid') +'"></div><div class="form-group"> <input type="text" class="form-control" id="qty" placeholder="1"></div> </form>';
         var header = '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><div><h4>Просмотр позиции товара</h4>  </div>';
         var footer = '<button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">В корзину</button> <button type="button" class="btn btn-danger btn-sm">Отмена</button>';
         $('#largeModal .modal-header').empty();

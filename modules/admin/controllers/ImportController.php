@@ -19,17 +19,26 @@ class ImportController extends DefaultController
 {
 	public $layout = 'main';
 	public function actionIndex(){
+		$suppliers = '';
 		$model = new UploadForm();
 		if($model->load(Yii::$app->request->post()) && $model->validate()){
+
 			$file = $model->dataFile = UploadedFile::getInstance($model, 'dataFile');
-			$file->saveAs('upload/pricelist.csv');
-			$suppliers = $model->suppliers;
-			$this->actionPriceimport($suppliers);
-			$suppliers ='Прайс загружен';
+			if ($file){
+				$file->saveAs('../web/upload/pricelist.csv');
+				$suppliers ='Прайс загружен';
+				$id_suppliers = $model->suppliers;
+				$this->actionPriceimport($id_suppliers);
+			}
+			else{
+				$suppliers ='Error upload';
+			}
+
 		}
 		else{
 			$suppliers ='Загрузка прайсов';
 		}
+
 		return $this->render('index', ['model' => $model,'data' => $suppliers]);
 	}
 	public function actionPriceimport($suppliers){
@@ -37,7 +46,7 @@ class ImportController extends DefaultController
 		else{
 			$suppliers = $_GET['suppliers'] ;
 		}
-		if (($handle_f = fopen('upload\pricelist.csv', "r")) !== FALSE){
+		if (($handle_f = fopen('../web/upload/pricelist.csv', "r")) !== FALSE){
 			// проверяется, надо ли продолжать импорт с определенного места
 			// если да, то указатель перемещается на это место
 			$dataImport = '';
@@ -74,7 +83,7 @@ class ImportController extends DefaultController
 			}
 			Priceimport::insert($dataImport);
 			fclose($handle_f);
-			unlink('upload\pricelist.csv');
+			unlink('../web/upload/pricelist.csv');
 			return $this->redirect('index');
 		}
 		return $this->redirect('index');
