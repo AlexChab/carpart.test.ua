@@ -57,9 +57,10 @@ class CartController extends AppController
 		$htmlBody = $contentBuyers.$contentHeader.$contentBody.$contentFooter;
 	//	$this->debug($htmlBody);
 		Yii::$app->mailer->compose()
-			->setFrom('sonata@e911.com.ua')
-			->setTo('pit-stop_2001@mail.ru')
-//			->setTo('alexchab.1808@gmail.com')
+			->setFrom('partcar.od@gmail.com')
+			//->setFrom('sonata@e911.com.ua')
+//			->setTo('pit-stop_2001@mail.ru')
+			->setTo('alexchab.1808@gmail.com')
 			->setSubject('Заказ')
 			->setTextBody('Заказ с сайта')
 			->setHtmlBody($htmlBody)

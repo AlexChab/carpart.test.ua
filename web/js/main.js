@@ -162,11 +162,54 @@ $(document).ready(function(){
     })
 
      // pay-button click
+    function addBasket(){
+        console.log($('#formAddBascetSource').val());
+        console.log( $('#formAddBasketQty').val());
+        var cartData = getCartData() || {}, // получаем данные корзины или создаём новый объект, если данных еще нет
+            source = $('#formAddBascetSource').val(),
+            artid = $('#formAddBascetArtid').val(),
+            partname = $('#formAddBascetPartname').val(),
+            brand = $('#formAddBascetBrand').val(),
+            price = $('#formAddBascetPrice').val(),
+            qty = Number($('#formAddBasketQty').val());
+        if(qty==0){
+            qty = Number(1);
+        }
+        if(cartData.hasOwnProperty(artid)){ // если такой товар уже в корзине, то добавляем  к его количеству
+            cartData[artid][5] += qty;
+        } else { // если товара в корзине еще нет, то добавляем в объект
+            cartData[artid] = [source,artid, partname, brand, price, qty];
+        }
+        setCartData(cartData); // Обновляем данные в LocalStorage
+        viewBasketBuyers();
+
+    }
+
+    $('#largeModal').on('click','#buttonAddBasket',function(e){
+        // console.log('AddButton');
+        e.preventDefault();
+        addBasket();
+    })
+    $('#largeModal').on('focus','#formAddBasketQty',function(){
+       $(this).attr('value','');
+
+    })
     $('#contentBody').on('click','.pay-button',function(e){
         e.preventDefault();
-        var contentDataBody = '<form class="form-inline" role="form"><div class="form-group"> <input type="text" class="form-control" id="" placeholder="'+$(this).data('artid') +'"></div><div class="form-group"> <input type="text" class="form-control" id="qty" placeholder="1"></div> </form>';
-        var header = '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><div><h4>Просмотр позиции товара</h4>  </div>';
-        var footer = '<button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">В корзину</button> <button type="button" class="btn btn-danger btn-sm">Отмена</button>';
+        var contentDataBody =
+            '<form id="formAddBasket" class="form-inline" role="form">'+
+             ' <table class="table table-hover"><tr><th>Артикул</th><th>Производитель</th><th>Название</th><th>Цена,ед. грн.</th></tr>'+
+             '<tr>'+
+            '<td><div class="form-group"> <input type="text" id="formAddBascetArtid" name="formAddBascetArtid" class="form-control" value="'+$(this).data('artid') +'" placeholder="'+$(this).data('artid') +'" readonly></div></td>'+
+            '<td><div class="form-group"> <input type="text" id="formAddBascetBrand" name="formAddBascetBrand" class="form-control"  value="'+$(this).data('brand') +'" placeholder="'+$(this).data('brand') +'" readonly></div></td>'+
+            '<td><div class="form-group"> <input type="text" id="formAddBascetPartname" name="formAddBascetPartname" class="form-control" value="'+$(this).data('partname') +'" placeholder="'+$(this).data('partname') +'" readonly></div></td>'+
+            '<td><div class="form-group"> <input type="text" id="formAddBascetPrice" name="formAddBascetPrice" class="form-control" value="'+$(this).data('price') +'" placeholder="'+$(this).data('price') +'" readonly></div></td>'+
+            '<td><div class="form-group"> <input type="hidden" id="formAddBascetSource" name="formAddBascetSource" class="form-control" value="'+$(this).data('source') +'"></div></td>'+
+            '<tr><td></td><td></td><td><b>Укажите количество</b></td>'+
+            '<td><div class="form-group"><input type="text" id="formAddBasketQty" name="formAddBasketQty" class="form-control" value="1" ></div></td>'+
+            '</tr></table></form>';
+        var header = '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><div><h4>Поместить товар в корзину</h4>  </div>';
+        var footer = '<button id="buttonAddBasket" type="button" class="btn btn-success btn-sm" data-dismiss="modal">В корзину</button> <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Отмена</button>';
         $('#largeModal .modal-header').empty();
         $('#largeModal .modal-header').append(header);
         $('#largeModal .modal-body').empty();
@@ -174,29 +217,6 @@ $(document).ready(function(){
         $('#largeModal .modal-footer').empty();
         $('#largeModal .modal-footer').append(footer);
         $('#largeModal').modal('show');
-
-
-
-
-        var cartData = getCartData() || {}, // получаем данные корзины или создаём новый объект, если данных еще нет
-            source = $(this).data('source'),
-            artid = $(this).data('artid'),
-            partname = $(this).data('partname'),
-            brand = $(this).data('brand'),
-            price = $(this).data('price'),
-            qty = 1;
-            if(cartData.hasOwnProperty(artid)){ // если такой товар уже в корзине, то добавляем +1 к его количеству
-                cartData[artid][5] += 1;
-                //console.log(cartData[artid][5]);
-               // cartData.qty = cartData.qty+1;
-               // cartData[artid] = [source,artid, partname, brand, price, qty];
-
-            } else { // если товара в корзине еще нет, то добавляем в объект
-                cartData[artid] = [source,artid, partname, brand, price, qty];
-            }
-            // cartData[artid] = [source,artid, partname, brand, price, qty];
-        // setCartData(cartData); // Обновляем данные в LocalStorage
-        // viewBasketBuyers();
     });
 
     $('#collapseOne').on('hidden.bs.collapse', function () {
