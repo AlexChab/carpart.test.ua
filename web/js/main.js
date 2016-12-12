@@ -97,7 +97,7 @@ $(document).ready(function(){
     // create order byer
     $('#largeModal').on('click','#createOrderByer',function(e){
         e.preventDefault();
-        var content = '<p> Поздравляем! Вы только что совершили заказ в инетернет магазине. Менеджер свяжется с вами в ближайшее время. Копия заказа отпралена на ваш почтовый ящик. Контакты интернет магазина </p>';
+
         var cartData = getCartData();
         var header = '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><div><h4> Оформление заказа</h4>  </div>';
         var footer = '<button type="button" id="successBuy" class="btn btn-warning btn-sm" >Оформить заказ</button> ';
@@ -112,12 +112,17 @@ $(document).ready(function(){
                 $('#largeModal .modal-body').append(data);
                 $('#largeModal .modal-footer').empty();
                 $('#largeModal .modal-footer').append(footer);
+
             }
         });
     })
     // shop buyer
     $('#largeModal').on('click','#successBuy',function(e) {
+
         e.preventDefault();
+        var header = '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><div><h4>Завершение покупки</h4>  </div>';
+        var content = '<p> Поздравляем! Вы только что совершили заказ в инетернет магазине. Менеджер свяжется с вами в ближайшее время. Копия заказа отпралена на ваш почтовый ящик. Контакты интернет магазина </p>';
+        var footer = '<button type="button" class="btn btn-primary btn-sm" data-dismiss="modal"> Закрыть </button> ';
         //$('#largeModal').modal('hide');
         var cartData = getCartData();
         var formNameBuyer = $('#inputNameBuyer').val();
@@ -130,16 +135,14 @@ $(document).ready(function(){
             type:'POST',
             data: data,
             success: function(data) {
-
                 $('#largeModal .modal-header').empty();
-                //$('#largeModal .modal-header').append(header);
-
+                $('#largeModal .modal-header').append(header);
                 $('#largeModal .modal-body').empty();
-                $('#largeModal .modal-body').append(data);
-
+                $('#largeModal .modal-body').append(content);
                 $('#largeModal .modal-footer').empty();
-                // $('#largeModal .modal-footer').append(footer);
-                $('#largeModal').modal('hide');
+                $('#largeModal .modal-footer').append(footer);
+                clearCartData();
+                $('#largeModal').modal('show');
 
             }
         });
