@@ -27,6 +27,7 @@ class CartController extends AppController
 		$nameBuyer = $request->post('formNameBuyer');
 		$emailBuyer = $request->post('formEmailBuyer');
 		$phoneBuyer = $request->post('formPhoneBuyer');
+
 		$contentBuyers = ' <h4> Заказ № от '.date("d-m-Y H:i:s").'</h4>Имя покупателя: '.$nameBuyer.' <br>Email покупателя: '.$emailBuyer.' <br>Телефон покупателя: '.$phoneBuyer.' <br> <hr> ';
 		$contentHeader = '
 		<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" >
@@ -55,17 +56,15 @@ class CartController extends AppController
 			$contentBody .= '<tr><td align="center" valign="top">'.$value[0].'</td><td align="center" valign="top">'.$value[1].'</td><td align="center" valign="top">'.$value[2].'</td><td align="center" valign="top">'.$value[3].'</td><td align="center" valign="top">'.$value[4].'</td><td align="center" valign="top">'.$value[5].'</td></tr>';
 		}
 		$htmlBody = $contentBuyers.$contentHeader.$contentBody.$contentFooter;
-	//	$this->debug($htmlBody);
+		$this->debug($htmlBody);
 		Yii::$app->mailer->compose()
 			->setFrom('partcar.od@gmail.com')
-			//->setFrom('sonata@e911.com.ua')
-//			->setTo('pit-stop_2001@mail.ru')
 			->setTo('alexchab.1808@gmail.com')
 			->setSubject('Заказ')
 			->setTextBody('Заказ с сайта')
 			->setHtmlBody($htmlBody)
 			->send();
-		
+
 	}
 
 	public function actionCreateorder(){
@@ -75,7 +74,7 @@ class CartController extends AppController
 		<form role="form" id="formBuyer">
   		<div class="form-group col-lg-6">
     		<label for="nameBuyer">Имя, Фамилия</label>
-    		<input type="nameBuyer" class="form-control" id="inputNameBuyer" placeholder="Ваше имя,фамилия">
+    		<input type="text" class="form-control" id="inputNameBuyer" placeholder="Bмя,фамилия">
   		</div>
   		<div class="form-group col-lg-6">
     		<label for="">Email</label>
@@ -83,7 +82,7 @@ class CartController extends AppController
   		</div>
   		<div class="form-group col-lg-6">
     		<label for="">Телефон</label>
-    		<input type="text" class="form-control" id="inputPhoneBuyer" placeholder="">
+    		<input type="text" class="form-control " id="inputPhoneBuyer" placeholder="(067)7542132">
   		</div>
   	</form>';
 		$contentHeader = '

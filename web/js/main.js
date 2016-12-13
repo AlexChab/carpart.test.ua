@@ -94,10 +94,10 @@ $(document).ready(function(){
         delRowCartData($(this).attr("data-artid"));
         $(this).closest('tr').remove();
     })
+
     // create order byer
     $('#largeModal').on('click','#createOrderByer',function(e){
         e.preventDefault();
-
         var cartData = getCartData();
         var header = '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><div><h4> Оформление заказа</h4>  </div>';
         var footer = '<button type="button" id="successBuy" class="btn btn-warning btn-sm" >Оформить заказ</button> ';
@@ -116,9 +116,19 @@ $(document).ready(function(){
             }
         });
     })
+    // Check input data form
+    $('#largeModal').on('blur','#inputNameBuyer',function(){
+        var inputData = $('#inputNameBuyer').val();
+        if(inputData.length >= 2){
+            console.log(' not null');
+        }
+         else{
+            console.log('null')
+        }
+    })
+
     // shop buyer
     $('#largeModal').on('click','#successBuy',function(e) {
-
         e.preventDefault();
         var header = '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><div><h4>Завершение покупки</h4>  </div>';
         var content = '<p> Поздравляем! Вы только что совершили заказ в инетернет магазине. Менеджер свяжется с вами в ближайшее время. Копия заказа отпралена на ваш почтовый ящик. Контакты интернет магазина </p>';
@@ -128,12 +138,13 @@ $(document).ready(function(){
         var formNameBuyer = $('#inputNameBuyer').val();
         var formEmailBuyer = $('#inputEmailBuyer').val();
         var formPhoneBuyer = $('#inputPhoneBuyer').val();
-        var data = 'jsonData='+JSON.stringify(cartData)+'&formNameBuyer='+formNameBuyer+'&formEmailBuyer='+formEmailBuyer+'&formPhoneBuyer='+formPhoneBuyer;
-        console.log(data);
+        var jsonData = 'jsonData='+JSON.stringify(cartData)+'&formNameBuyer='+formNameBuyer+'&formEmailBuyer='+formEmailBuyer+'&formPhoneBuyer='+formPhoneBuyer;
+        // var jsonData = 'jsonData='+JSON.stringify(cartData);
+        console.log(jsonData);
         $.ajax({
             url:'/cart/successbuy',
             type:'POST',
-            data: data,
+            data: jsonData,
             success: function(data) {
                 $('#largeModal .modal-header').empty();
                 $('#largeModal .modal-header').append(header);
