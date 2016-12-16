@@ -27,8 +27,9 @@ class CartController extends AppController
 		$nameBuyer = $request->post('formNameBuyer');
 		$emailBuyer = $request->post('formEmailBuyer');
 		$phoneBuyer = $request->post('formPhoneBuyer');
+		$orderNum = date("ymHi");
 
-		$contentBuyers = ' <h4> Заказ № от '.date("d-m-Y H:i:s").'</h4>Имя покупателя: '.$nameBuyer.' <br>Email покупателя: '.$emailBuyer.' <br>Телефон покупателя: '.$phoneBuyer.' <br> <hr> ';
+		$contentBuyers = ' <h4> Заказ '.$orderNum.' от '.date("d-m-Y H:i:s").'</h4>Имя покупателя: '.$nameBuyer.' <br>Email покупателя: '.$emailBuyer.' <br>Телефон покупателя: '.$phoneBuyer.' <br> <hr> ';
 		$contentHeader = '
 		<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" >
     <tr>
@@ -58,8 +59,9 @@ class CartController extends AppController
 		$htmlBody = $contentBuyers.$contentHeader.$contentBody.$contentFooter;
 		$this->debug($htmlBody);
 		Yii::$app->mailer->compose()
-			->setFrom('partcar.od@gmail.com')
-			->setTo('alexchab.1808@gmail.com')
+			->setFrom('partcar@ukr.net')
+			//->setTo('alexchab.1808@gmail.com')
+			->setTo(array('partcar.od@gmail.com','alexchab.1808@gmail.com'))
 			->setSubject('Заказ')
 			->setTextBody('Заказ с сайта')
 			->setHtmlBody($htmlBody)
