@@ -102,6 +102,9 @@ AdminAsset::register($this);
 											<a href="/admin/import">Импорт прайсов</a>
 										</li>
 										<li>
+											<a href="/admin/import/file">Импорт прайса из файла</a>
+										</li>
+										<li>
 											<a href="/admin/import/deleteprice">Удаление прайсов</a>
 										</li>
 

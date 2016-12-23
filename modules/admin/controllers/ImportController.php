@@ -13,6 +13,7 @@ use Yii;
 use app\models\Priceimport;
 use app\models\UploadForm;
 use app\models\form\DeletepriceForm;
+use app\models\form\ImportfilepriceForm;
 use yii\web\UploadedFile;
 
 class ImportController extends DefaultController
@@ -88,10 +89,24 @@ class ImportController extends DefaultController
 		}
 		return $this->redirect('index');
 	}
+	public function actionFile(){
+		$model = new ImportfilepriceForm();
+		$error = '';
+		if($model->load(Yii::$app->request->post()) && $model->validate()){
+			$suppliersId = $model->suppliers;
+			$this->actionPriceimport($suppliersId);
+			$error ='Прайс импотртирован';
+		}
+		else{
+			$error ='Внимание ! Перед импортом прайса скопируйте файл в каталог. Не забудьте выбрать поставщика';
+		}
+
+		return $this->render('file', ['model' => $model,'error' => $error]);
+	}
 	public function actionDeleteprice(){
 		$model = new DeletepriceForm();
 		if($model->load(Yii::$app->request->post()) && $model->validate()){
-			$suppliersId = $model->suppliers; 
+			$suppliersId = $model->suppliers;
 			Price::deleteAll(['suppliers_id' => $suppliersId]);
 			$error ='Прайс удален';
 		}
