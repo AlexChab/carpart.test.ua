@@ -68,6 +68,22 @@ class CartController extends AppController
 			->send();
 
 	}
+	public function actionCallback(){
+		$request = Yii::$app->request;
+		$cbInputName = $request->post('cbInputName');
+		$cbInputPhone = $request->post('cbInputPhone');
+		$returnData = '<h4><i class="fa fa-check-square-o text-success" aria-hidden="true"></i> Ваша заявка принята</h4><p><b class="text-success"> '.$cbInputName.'  ! </b>  Ожидайте вызова менеджера на телефон <b> '.$cbInputPhone.' </b>. Напоминаем время работы магазина с 9-00 до 18-00 </p>';
+		$htmlBody ='<div> Имя клиента: <b>'.$cbInputName.' </b> <br> Телефон клиента: <b>'.$cbInputPhone.' </b><br> Время заявки: <b>'.date("H:i:s d-m-Y").' </b></div>';
+		Yii::$app->mailer->compose()
+			->setFrom('partcar@ukr.net')
+			//->setTo('alexchab.1808@gmail.com')
+			->setTo(array('partcar.od@gmail.com','alexchab.1808@gmail.com'))
+			->setSubject('Обратный звонок')
+			->setTextBody('Обратный звонок')
+			->setHtmlBody($htmlBody)
+			->send();
+		return $returnData;
+	}
 
 	public function actionCreateorder(){
 		$request = Yii::$app->request;

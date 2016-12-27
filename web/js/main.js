@@ -1,5 +1,4 @@
 // Чтение из LocalStorage
-
 function getCartData(){
     return JSON.parse(localStorage.getItem('cart'));
 }
@@ -34,7 +33,6 @@ function viewBasketBuyers(){
     $('.panel-body-cart').empty();
     $('.panel-body-cart').html(data);
 }
-
 // delete cart position
 function delRowCartData(artid){
     var footer = '</tbody></table> <p class="small"> * Позиция <b>уточн.</b> требует уточнения цены у менеджера. Сумма заказа может быть изменена после уточнения. </p>';
@@ -47,7 +45,6 @@ function delRowCartData(artid){
     $('#largeModal .modal-body').append(contentDataBody);
 
 }
-
 // shop cart view
 function shopCartView(){
     var cartData = getCartData();
@@ -72,9 +69,17 @@ function shopCartView(){
 
 $(window).load(function(){
     viewBasketBuyers();
+
 });
 
 $(document).ready(function(){
+    //Global function
+    $('tbody tr[data-href]').on('click',function() {
+        console.log('href click');
+        window.location = $(this).attr('data-href');
+    });
+
+
     // shop-cart view
     $('.panel-body-cart').on('click',function(e){
         e.preventDefault();
@@ -123,7 +128,7 @@ $(document).ready(function(){
             console.log(' not null');
         }
          else{
-            console.log('null')
+            console.log('null');
         }
     })
 
@@ -131,7 +136,7 @@ $(document).ready(function(){
     $('#largeModal').on('click','#successBuy',function(e) {
         e.preventDefault();
         var header = '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><div><h4>Завершение покупки</h4>  </div>';
-        var content = '<p> Поздравляем! Вы только что совершили заказ в инетернет магазине. Менеджер свяжется с вами в ближайшее время. Копия заказа отпралена на ваш почтовый ящик. Контакты интернет магазина </p>';
+        var content = '<p> Поздравляем! Вы только что совершили заказ в интернет магазине автозапчастей. Менеджер свяжется с вами в ближайшее время. Копия заказа отправлена на ваш почтовый ящик. Контакты интернет магазина </p>';
         var footer = '<button type="button" class="btn btn-primary btn-sm" data-dismiss="modal"> Закрыть </button> ';
         //$('#largeModal').modal('hide');
         var cartData = getCartData();
@@ -140,7 +145,7 @@ $(document).ready(function(){
         var formPhoneBuyer = $('#inputPhoneBuyer').val();
         var jsonData = 'jsonData='+JSON.stringify(cartData)+'&formNameBuyer='+formNameBuyer+'&formEmailBuyer='+formEmailBuyer+'&formPhoneBuyer='+formPhoneBuyer;
         // var jsonData = 'jsonData='+JSON.stringify(cartData);
-        console.log(jsonData);
+       // console.log(jsonData);
         $.ajax({
             url:'/cart/successbuy',
             type:'POST',
@@ -177,8 +182,8 @@ $(document).ready(function(){
 
      // pay-button click
     function addBasket(){
-        console.log($('#formAddBascetSource').val());
-        console.log( $('#formAddBasketQty').val());
+        //console.log($('#formAddBascetSource').val());
+        //console.log( $('#formAddBasketQty').val());
         var cartData = getCartData() || {}, // получаем данные корзины или создаём новый объект, если данных еще нет
             source = $('#formAddBascetSource').val(),
             artid = $('#formAddBascetArtid').val(),
@@ -253,22 +258,44 @@ $(document).ready(function(){
 		$('#smallModal .modal-footer').empty();
 		$('#smallModal .modal-footer').append(footer);
 		$('#smallModal').modal('toggle');
-
 		$('#form-'+this.id).remove();
 	})
 	// call back phone
+
 	$('#call-back').on('click',function(){
 		var header = ' <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><div>Обратный вызов</div>';
-		var content = '<div class="form-group"><label for="cbInputName">Ваше имя</label><input type="email" class="form-control" id="cbInputName" placeholder="Ваше имя"></div><div class="form-group"><label for="cbInputPhone">Ваш телефон</label><input type="password" class="form-control" id="cbInputPhone" placeholder="Телефон"></div>';
-		var footer = ' <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Отмена</button><button type="button" class="btn btn-success btn-sm">Вызов</button>';
+		var content = '<p> Подбор запчастей по телефону , укажите ваш номер и имя</p><div class="form-group"><label for="cbInputName">Ваше имя</label><input type="text" class="form-control" id="cbInputName" placeholder="Ваше имя"></div><div class="form-group"><label for="cbInputPhone">Ваш телефон</label><input type="text" class="form-control" id="cbInputPhone" name="cbInputPhone" placeholder="Телефон"></div>';
+		var footer = ' <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Отмена</button><button id="call-back-begin" type="button" class="btn btn-success btn-sm">Вызов</button>';
 		$('#smallModal .modal-header').empty();
 		$('#smallModal .modal-header').append(header);
 		$('#smallModal .modal-body').empty();
 		$('#smallModal .modal-body').append(content);
 		$('#smallModal .modal-footer').empty();
 		$('#smallModal .modal-footer').append(footer);
+        $('#cbInputPhone').mask("(999) 999-99-99");
 		$('#smallModal').modal('toggle');
 	})
+    $('#smallModal').on('click','#call-back-begin',function(){
+        var header = ' <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+        var footer = ' <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Закрыть</button>';
+        var data='cbInputName='+$('#cbInputName').val()+'&cbInputPhone='+$('#cbInputPhone').val();
+        $.ajax({
+            url:'/cart/callback',
+            type:'POST',
+            data: data,
+            success: function(data) {
+                $('#smallModal .modal-header').empty();
+                $('#smallModal .modal-header').append(header);
+                $('#smallModal .modal-body').empty();
+                $('#smallModal .modal-body').append(data);
+                $('#smallModal .modal-footer').empty();
+                $('#smallModal .modal-footer').append(footer);
+
+
+            }
+        });
+
+    })
 
 
 	// search panel on header
@@ -331,16 +358,16 @@ $(document).ready(function(){
 
 
     // -- Hover на изменение вида 
-	$('.category').hover(function(){
-		console.log();
-		// this.('i').addClass('fa-spin');
-	},
-	function(){
-		console.log('by');
-	})
-     $('#dataTables-example').DataTable({
-       responsive: true
-    });
+    // $('.category').hover(function(){
+		// console.log();
+		// // this.('i').addClass('fa-spin');
+    // },
+    // function(){
+		// console.log('by');
+    // })
+    //  $('#dataTables-example').DataTable({
+    //    responsive: true
+    // });
 
 });
 

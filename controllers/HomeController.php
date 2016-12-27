@@ -43,7 +43,7 @@ class HomeController extends AppController
 		$id = $request->get('carid');
 		$data = Tecdoc::getCarModel($id);
 		//$this->debug($data);
-		return $this->render('carModel',compact('data'));
+		return $this->render('carmodel',compact('data'));
 	}
 	public function actionGettree(){
 		$request = Yii::$app->request;

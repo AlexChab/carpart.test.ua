@@ -8,7 +8,7 @@
 			<table class="table letter table-condensed">
 				<thead>
 				<tr>
-					<th>Tree</th>
+
 					<th>Модификация</th>
 					<th>Топливо</th>
 					<th>Двигатель</th>
@@ -21,17 +21,14 @@
 				<?php
 				foreach ($data as $value){
 					echo'
-					<tr>
-					<td><a href="/home/gettree?typ_id='.$value['TYP_ID'].'&str_id=10001">'.$value['TYP_ID'].'</a></td>
+					<tr data-href="/home/gettree?typ_id='.$value['TYP_ID'].'&str_id=10001">
 					<td>'.$value['TYP_CDS_TEXT'].'</td>
 					<td>'.$value['TYP_FUEL_DES_TEXT'].'</td>
 					<td>'.$value['ENG_CODE'].'</td>
 					<td>'.$value['TYP_HP_FROM'].'</td>
 					<td>'.$value['TYP_CCM'].'</td>
 					<td>'.$value['TYP_PCON_START'].'</td>
-					</tr>	
-					
-					';
+					</tr>';
 				}
 
 				?>

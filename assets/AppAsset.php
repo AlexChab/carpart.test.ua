@@ -22,6 +22,7 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
       'js/main.js',
+      'js/jquery.maskedinput.min.js',
       '/js/jquery.dataTables.min.js',
       '/js/dataTables.bootstrap.min.js',
       '/js/dataTables.responsive.js',
