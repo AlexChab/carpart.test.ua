@@ -6,7 +6,7 @@ use app\models\Currency;
 ?>
 <div class="panel panel-default">
 	<div class="panel-heading panel-heading-wrap">
-		Подбор по артикулу
+		 Подбор по артикулу
 	</div>
 	<div class="panel-body">
 <!--		$value['SUP_BRAND']-->

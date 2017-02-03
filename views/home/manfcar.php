@@ -1,6 +1,6 @@
 <div class="panel panel-default">
 	<div class="panel-heading panel-heading-wrap">
-		Модели по производителю
+		<?php echo '<a href="/home"><i class="fa fa-home text-danger" aria-hidden="true"></i></a> -  <b class="text-info"> '. $mfaBrand.'</b> - <b class="text-info"> '. $year.'</b> </a>  '; ?> - выбор модели
 	</div>
 	<div class="panel-body">
 		<ul class="models">
@@ -16,7 +16,7 @@
 					$i++;
 					echo'
 				<li>
-				<a  href="/home/carmodel?carid='.$value['MOD_ID'].'"><b>'.$value['MOD_CDS_TEXT'].'</b></a>
+				<a  href="/home/carmodel?carid='.$value['MOD_ID'].'&model='.$value['MOD_CDS_TEXT'].'&mfaBrand='.$mfaBrand.'&year='.$year.' "><b>'.$value['MOD_CDS_TEXT'].'</b></a>
 			</li>';
 				}
 

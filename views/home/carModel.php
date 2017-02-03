@@ -1,7 +1,7 @@
 <div class="panel panel-default">
 	<div class="panel-heading panel-heading-wrap">
-		Модели автомобиля
-	</div>
+		<?php echo '<a href="/home"><i class="fa fa-home text-danger" aria-hidden="true"></i></a> - <a href="/home"> <b class="text-info"> '. $mfaBrand.'</b> </a>- <b class="text-info"> '. $year.'</b> - <b class="text-info"> '. $model.'</b>'; ?> - выбор модификации автомобиля
+		</div>
 	<div class="panel-body">
 
 		<div class="table-responsive">
@@ -21,7 +21,7 @@
 				<?php
 				foreach ($data as $value){
 					echo'
-					<tr data-href="/home/gettree?typ_id='.$value['TYP_ID'].'&str_id=10001">
+					<tr data-href="/home/gettree?typ_id='.$value['TYP_ID'].'&str_id=10001&mfaBrand='.$mfaBrand.'&year='.$year.'&typ_cds='.$value['TYP_CDS_TEXT'].'&model='.$model.'">
 					<td>'.$value['TYP_CDS_TEXT'].'</td>
 					<td>'.$value['TYP_FUEL_DES_TEXT'].'</td>
 					<td>'.$value['ENG_CODE'].'</td>

@@ -1,6 +1,6 @@
 <div class="panel panel-default">
 	<div class="panel-heading panel-heading-wrap">
-		Год выпуска
+		<?php echo '<a href="/home"><i class="fa fa-home text-danger" aria-hidden="true"></i></a> - <a href="/home"> <b class="text-info"> '. $mfaBrand.'</b></a> '; ?> - выбор года выпуска
 	</div>
 	<div class="panel-body">
 		<ul class="models">
@@ -10,7 +10,7 @@
 					$i=0;
 					echo '
 					<li>
-					<a  href="/home/manfcar?manid='.$id.'&caryear='.$value.'01"><b>'.$value.'</b></a>
+					<a  href="/home/manfcar?manid='.$id.'&year='.$value.'&mfaBrand='.$mfaBrand.'&caryear='.$value.'01"><b>'.$value.'</b></a>
 					</li>
 					</ul><ul class="models">';
 				}
@@ -18,7 +18,7 @@
 					$i++;
 					echo'
 				<li>
-				<a  href="/home/manfcar?manid='.$id.'&caryear='.$value.'01"><b>'.$value.'</b></a>
+				<a  href="/home/manfcar?manid='.$id.'&year='.$value.'&mfaBrand='.$mfaBrand.'&caryear='.$value.'01"><b>'.$value.'</b></a>
 			</li>';
 				}
 

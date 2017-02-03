@@ -279,22 +279,29 @@ $(document).ready(function(){
         var header = ' <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
         var footer = ' <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Закрыть</button>';
         var data='cbInputName='+$('#cbInputName').val()+'&cbInputPhone='+$('#cbInputPhone').val();
-        $.ajax({
-            url:'/cart/callback',
-            type:'POST',
-            data: data,
-            success: function(data) {
-                $('#smallModal .modal-header').empty();
-                $('#smallModal .modal-header').append(header);
-                $('#smallModal .modal-body').empty();
-                $('#smallModal .modal-body').append(data);
-                $('#smallModal .modal-footer').empty();
-                $('#smallModal .modal-footer').append(footer);
+        if ($('#cbInputName').val().length < 3 ){
+            $('#smallModal .modal-body').append('<div id="modalInfoError"><p class="text-danger"> Введите имя </p></div>');
+        }
+        else if($('#cbInputPhone').val().length < 9){
+            $('#smallModal .modal-body #modalInfoError').empty();
+            $('#smallModal .modal-body').append('<div id="modalInfoError"> <p class="text-danger"> Введите телефон </p></div>');
+        }
+        else{
+            $.ajax({
+                url:'/cart/callback',
+                type:'POST',
+                data: data,
+                success: function(data) {
+                    $('#smallModal .modal-header').empty();
+                    $('#smallModal .modal-header').append(header);
+                    $('#smallModal .modal-body').empty();
+                    $('#smallModal .modal-body').append(data);
+                    $('#smallModal .modal-footer').empty();
+                    $('#smallModal .modal-footer').append(footer);
+                }
+            });
 
-
-            }
-        });
-
+        }
     })
 
 

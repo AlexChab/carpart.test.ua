@@ -58,10 +58,10 @@ AppAsset::register($this);
 	</div>
 	<div class="row">
 		<div class="col-md-3">
-			<div class="panel panel-default panel-wrap panel-group" id="accordion">
-				<div class="panel-heading panel-heading-wrap h5"><i class="fa fa-car text-danger " aria-hidden="true"></i> Мой гараж <i id="my-garage" class="fa fa-chevron-down pull-right" aria-hidden="true" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"></i></div>
-				<div id="collapseOne" class="panel-collapse collapse ">
-					<div class="panel-body panel-body-wrap">
+<!--			<div class="panel panel-default panel-wrap panel-group" id="accordion">-->
+<!--				<div class="panel-heading panel-heading-wrap h5"><i class="fa fa-car text-danger " aria-hidden="true"></i> Мой гараж <i id="my-garage" class="fa fa-chevron-down pull-right" aria-hidden="true" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"></i></div>-->
+<!--				<div id="collapseOne" class="panel-collapse collapse ">-->
+<!--					<div class="panel-body panel-body-wrap">-->
 <!--						<div class="form-group" id="form-id-1111">-->
 <!--							<div class="input-group">-->
 <!--									<span class="input-group-btn">-->
@@ -78,9 +78,9 @@ AppAsset::register($this);
 <!--								<input type="button" class="form-control  my-car"  value="BMW-X5" >-->
 <!--							</div>-->
 <!--						</div>-->
-					</div>
-				</div>
-			</div>
+<!--					</div>-->
+<!--				</div>-->
+<!--			</div>-->
 			<div class="panel panel-default panel-wrap">
 				<div class="panel-heading panel-heading-wrap h5"><i class="fa fa-cogs text-danger" aria-hidden="true"></i> Подбор запчасти по автомобилю </div>
 				<div class="panel-body panel-body-wrap">
@@ -147,6 +147,35 @@ AppAsset::register($this);
 					</div>
 				</div>
 			</div>
+
+			<div class="panel panel-default panel-wrap panel-group" id="accordion">
+				<div class="panel-heading panel-heading-wrap h5"><i class="fa fa-car text-danger " aria-hidden="true"></i> Запчасти для ТО  <i id="my-garage" class="fa fa-chevron-down pull-right" aria-hidden="true" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"></i></div>
+				<div id="collapseOne" class="panel-collapse collapse ">
+					<div class="panel-body panel-body-wrap">
+						<div class="form-group" id="form-id-1111">
+							<div class="input-group">
+								<span class="input-group-btn">
+										<button class="btn btn-default " type="button" id="" data-btn-info=""><i class="fa fa-times text-muted" aria-hidden="true"></i> </button>
+								</span>
+								<input type="button" class="form-control btn-success" value="Аккумуляторы" >
+							</div>
+						</div>
+												<div class="form-group" id="form-id-2222">
+													<div class="input-group">
+															<span class="input-group-btn">
+																<button class="btn btn-default del-my-car " id="id-2222" type="button" data-car-info="BMW-x5"><i class="fa fa-times text-muted" aria-hidden="true" ></i> </button>
+															</span>
+														<input type="button" class="form-control  my-car"  value="Масла" >
+													</div>
+												</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
 		</div>
 		<div class="col-md-9" id="contentBody">
 
